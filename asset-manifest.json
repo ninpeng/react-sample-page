@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-sample-page/static/css/main.584f321a.chunk.css",
+    "main.js": "/react-sample-page/static/js/main.6a89ef12.chunk.js",
+    "main.js.map": "/react-sample-page/static/js/main.6a89ef12.chunk.js.map",
+    "runtime~main.js": "/react-sample-page/static/js/runtime~main.22307b3c.js",
+    "runtime~main.js.map": "/react-sample-page/static/js/runtime~main.22307b3c.js.map",
+    "static/js/2.b41502e9.chunk.js": "/react-sample-page/static/js/2.b41502e9.chunk.js",
+    "static/js/2.b41502e9.chunk.js.map": "/react-sample-page/static/js/2.b41502e9.chunk.js.map",
+    "index.html": "/react-sample-page/index.html",
+    "precache-manifest.85b93772a6bc809f0d5e4686e6b29641.js": "/react-sample-page/precache-manifest.85b93772a6bc809f0d5e4686e6b29641.js",
+    "service-worker.js": "/react-sample-page/service-worker.js",
+    "static/css/main.584f321a.chunk.css.map": "/react-sample-page/static/css/main.584f321a.chunk.css.map",
+    "static/media/logo.svg": "/react-sample-page/static/media/logo.5d5d9eef.svg"
+  }
+}
