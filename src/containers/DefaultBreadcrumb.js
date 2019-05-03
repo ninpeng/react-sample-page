@@ -1,14 +1,14 @@
 import React from 'react';
 import { withRouter, Link } from "react-router-dom";
-import { Breadcrumb, BreadcrumbItem } from 'react-bootstrap';
+import { Breadcrumb } from 'react-bootstrap';
 
 const DefaultBreadcrumb = (props) => {
   return (
     <div>
       <Breadcrumb tag="nav" listTag="div">
-        <BreadcrumbItem><Link to="/">Home</Link></BreadcrumbItem>
-        <BreadcrumbItem><Link to="/phaser">Phaser</Link></BreadcrumbItem>
-        <BreadcrumbItem>Bootstrap</BreadcrumbItem>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item tag="span"><Link to="/phaser">Phaser</Link></Breadcrumb.Item>
+        <Breadcrumb.Item><Link to="/dnd">{`Drag&Drop`}</Link></Breadcrumb.Item>
       </Breadcrumb>
     </div>
   );

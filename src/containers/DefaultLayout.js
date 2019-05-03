@@ -7,10 +7,12 @@ import loadable from '@loadable/component';
 // import DefaultAside from './DefaultAside';
 // import DefaultFooter from './DefaultFooter';
 // import DefaultHeader from './DefaultHeader';
-import DefaultBreadcrumb from './DefaultBreadcrumb';
+// import DefaultBreadcrumb from './DefaultBreadcrumb';
+import Navbars from './Navbars';
 
 const Home = loadable(() => import('./home/HomeContainer'));
 const Phaser = loadable(() => import('./phaser/PhaserContainer'));
+const DnD = loadable(() => import('./dnd/DnDContainer'));
 
 class DefaultLayout extends Component {
   render() {
@@ -28,11 +30,12 @@ class DefaultLayout extends Component {
             <AppSidebarMinimizer />
           </AppSidebar>*/}
           <main className="main">
-            <DefaultBreadcrumb/>
+            <Navbars/>
             <Container fluid>
               <Switch>
                 <Route exact path="/" name="home" component={Home} />
                 <Route exact path="/phaser" name="phaser" component={Phaser} />
+                <Route exact path="/dnd" name="dnd" component={DnD} />
               </Switch>
             </Container>
           </main>
