@@ -8,7 +8,7 @@ const SampleContainer = () => {
   return (
     <Container fluid>
       <Row className="flex-xl-nowrap">
-        <Col className="d-flex" xs="12" md="3" xl="2">
+        <Col className="d-flex" xs="3" md="2" xl="1">
           <Sidebar/>
         </Col>
         <Col>

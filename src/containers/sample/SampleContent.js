@@ -4,15 +4,17 @@ import { Container } from 'react-bootstrap';
 
 import loadable from '@loadable/component';
 
-const Phaser = loadable(() => import('../phaser/PhaserContainer'));
-const DnD = loadable(() => import('../dnd/DnDContainer'));
+const Home = loadable(() => import('./home/HomeContainer'));
+const Gsap = loadable(() => import('./gsap/GsapContainer'));
+const DnD = loadable(() => import('./dnd/DnDContainer'));
 
 const SampleContent = () => {
   return (
     <Container>
       <Switch>
-        <Route exact path="/sample/phaser" name="phaser" component={Phaser} />
-        <Route exact path="/sample/dnd" name="dnd" component={DnD} />
+        <Route exact path="/sample" component={Home} />
+        <Route exact path="/sample/gsap" component={Gsap} />
+        <Route exact path="/sample/dnd" component={DnD} />
       </Switch>
     </Container>
   )

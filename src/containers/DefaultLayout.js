@@ -17,9 +17,9 @@ class DefaultLayout extends Component {
           <main className="main">
             <Navbars/>
             <Switch>
-              <Route exact path="/" name="home" component={Home} />
-              <Route path="/sample" name="sample" component={Sample} />
-              <Route exact path="/phaser" name="phaser" component={Phaser} />
+              <Route exact path={["/", "/home"]} component={Home} />
+              <Route path="/sample" component={Sample} />
+              <Route exact path="/phaser" component={Phaser} />
             </Switch>
           </main>
         </div>
