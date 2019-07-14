@@ -14,6 +14,9 @@ const Sidebar = () => {
         <Nav.Link eventKey="dnd" href="#sample/dnd">Drag&Drop</Nav.Link>
       </Nav.Item>
       <Nav.Item>
+        <Nav.Link eventKey="rematch" href="#sample/rematch">Redux-Rematch</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
         <Nav.Link eventKey="disabled" disabled>
           Disabled
         </Nav.Link>

@@ -7,6 +7,7 @@ import loadable from '@loadable/component';
 const Home = loadable(() => import('./home/HomeContainer'));
 const Gsap = loadable(() => import('./gsap/GsapContainer'));
 const DnD = loadable(() => import('./dnd/DnDContainer'));
+const Rematch = loadable(() => import('./redux/RematchContainer'));
 
 const SampleContent = () => {
   return (
@@ -15,6 +16,7 @@ const SampleContent = () => {
         <Route exact path="/sample" component={Home} />
         <Route exact path="/sample/gsap" component={Gsap} />
         <Route exact path="/sample/dnd" component={DnD} />
+        <Route exact path="/sample/rematch" component={Rematch} />
       </Switch>
     </Container>
   )

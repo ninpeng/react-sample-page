@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
-  const custom: Quote = {
+  const custom = {
     id: `id-${k}`,
     content: `Quote ${k}`
   };
@@ -43,7 +43,7 @@ const Quote = ({ quote, index }) => {
 }
 
 const QuoteList = React.memo(function QuoteList({ quotes }) {
-  return quotes.map((quote, index: number) => (
+  return quotes.map((quote, index) => (
     <Quote quote={quote} index={index} key={quote.id} />
   ));
 });
