@@ -8,6 +8,7 @@ import Navbars from './Navbars';
 const Home = loadable(() => import('./home/HomeContainer'));
 const Sample = loadable(() => import('./sample/SampleContainer'));
 const Phaser = loadable(() => import('./phaser/PhaserContainer'));
+const NoMatch = loadable(() => import('./nomatch/NomatchContainer'));
 
 class DefaultLayout extends Component {
   render() {
@@ -20,6 +21,7 @@ class DefaultLayout extends Component {
               <Route exact path={["/", "/home"]} component={Home} />
               <Route path="/sample" component={Sample} />
               <Route exact path="/phaser" component={Phaser} />
+              <Route component={NoMatch} />
             </Switch>
           </main>
         </div>
