@@ -18,7 +18,7 @@ const Sidebar = () => {
         <Nav.Link eventKey="rematch" as={Link} to="/sample/rematch">Redux-Rematch</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="select" as={Link} toref="/sample/select">react-select</Nav.Link>
+        <Nav.Link eventKey="select" as={Link} to="/sample/select">react-select</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey="disabled" disabled>
