@@ -44,6 +44,6 @@
   "devDependencies": {
     "cross-env": "^5.2.0"
   },
-  "homepage": "https://ninpeng.github.io/react-sample-page",
+  "homepage": "https://ninpeng.herokuapp.com/",
   "license": "MIT"
 }
