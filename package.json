@@ -44,6 +44,6 @@
   "devDependencies": {
     "cross-env": "^5.2.0"
   },
-  "homepage": ".",
+  "homepage": "https://ninpeng.herokuapp.com",
   "license": "MIT"
 }
