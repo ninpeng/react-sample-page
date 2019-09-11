@@ -21,6 +21,9 @@ const Sidebar = () => {
         <Nav.Link eventKey="select" as={Link} to="/sample/select">react-select</Nav.Link>
       </Nav.Item>
       <Nav.Item>
+        <Nav.Link eventKey="graphql" as={Link} to="/sample/graphql">GraphQL</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
         <Nav.Link eventKey="disabled" disabled>
           Disabled
         </Nav.Link>
