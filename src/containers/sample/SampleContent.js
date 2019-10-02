@@ -10,6 +10,7 @@ const DnD = loadable(() => import('./dnd/DnDContainer'));
 const Rematch = loadable(() => import('./redux/RematchContainer'));
 const Select = loadable(() => import('./select/SelectContainer'));
 const Graphql = loadable(() => import('./graphql/GraphqlContainer'));
+const Share = loadable(() => import('./share/ShareContainer'));
 
 const SampleContent = () => {
   return (
@@ -21,6 +22,7 @@ const SampleContent = () => {
         <Route exact path="/sample/rematch" component={Rematch} />
         <Route exact path="/sample/select" component={Select} />
         <Route exact path="/sample/graphql" component={Graphql} />
+        <Route exact path="/sample/share" component={Share} />
       </Switch>
     </Container>
   )

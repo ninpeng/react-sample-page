@@ -24,6 +24,9 @@ const Sidebar = () => {
         <Nav.Link eventKey="graphql" as={Link} to="/sample/graphql">GraphQL</Nav.Link>
       </Nav.Item>
       <Nav.Item>
+        <Nav.Link eventKey="share" as={Link} to="/sample/share">Share</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
         <Nav.Link eventKey="disabled" disabled>
           Disabled
         </Nav.Link>
