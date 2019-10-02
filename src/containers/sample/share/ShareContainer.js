@@ -1,15 +1,11 @@
 import React from 'react';
 import { Button, Container, Jumbotron } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
 
 const ShareContainer = () => {
-
-  const location = useLocation();
-
   const share = async () => {
     if (navigator.share) {
       try {
-        await navigator.share({ url: `${process.env.PUBLIC_URL}/${location.pathname}`, title: '주소 공유', text: '공유 테스트' });
+        await navigator.share({ url: window.location.origin, title: '주소 공유', text: '공유 테스트' });
         console.log('공유 완료');
       } catch (e) {
         console.error(e.message);
