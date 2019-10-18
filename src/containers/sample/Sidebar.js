@@ -4,7 +4,7 @@ import { Nav } from 'react-bootstrap';
 
 const Sidebar = () => {
   return (
-    <Nav variant="pills" defaultActiveKey="home" className="flex-column">
+    <Nav variant="pills" defaultActiveKey="home">
       <Nav.Item>
         <Nav.Link eventKey="home" as={Link} to="/sample">HOME</Nav.Link>
       </Nav.Item>
@@ -25,6 +25,9 @@ const Sidebar = () => {
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey="share" as={Link} to="/sample/share">Share</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="websocket" as={Link} to="/sample/websocket">WebSocket</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey="disabled" disabled>
