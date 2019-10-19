@@ -73,18 +73,17 @@ const WebSocketContainer = () => {
     }
   
     socket.onmessage = async (e) => {
-      const msg = JSON.parse(await e.data.text());
-      setTickerData(ticker => ({ ...ticker, [msg.code]: msg }));
-
-      // console.log(msg);
+      // 이 코드가 더 간결하지만 크롬에서만 작동함
+      // const msg = JSON.parse(await e.data.text());
+      // setTickerData(ticker => ({ ...ticker, [msg.code]: msg }));
   
-      // const fileReader =  new FileReader();
-      // fileReader.onload = (event) => {
-      //   var msg = event.target.result;
-      //   console.log(JSON.parse(msg))
-      // };
+      const fileReader = new FileReader();
+      fileReader.onload = (event) => {
+        const msg = JSON.parse(event.target.result);
+        setTickerData(ticker => ({ ...ticker, [msg.code]: msg }));
+      };
   
-      // fileReader.readAsBinaryString(e.data);
+      fileReader.readAsText(e.data);
     }
   
     socket.onclose = () => {
