@@ -4,7 +4,7 @@ import ApolloClient from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-hooks';
 // import fetch from 'unfetch';
-// import 'unfetch/polyfill';
+import 'unfetch/polyfill';
 
 import DefaultLayout from './containers/DefaultLayout';
 
