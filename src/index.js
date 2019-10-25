@@ -7,6 +7,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/stable';
+
 // generate Redux store
 const store = init({
     models,
