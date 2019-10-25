@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import DefaultLayout from './containers/DefaultLayout';
 
 const client = new ApolloClient({
   uri: 'https://ninpeng-movie.herokuapp.com',
+  cache: new InMemoryCache(),
 });
 
 function App() {
