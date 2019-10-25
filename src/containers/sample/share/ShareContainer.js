@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Container, Jumbotron } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
+import DefaultSampleContent from '../DefaultSampleContent';
 
 const ShareContainer = () => {
   const share = async () => {
@@ -16,15 +17,9 @@ const ShareContainer = () => {
   };
 
   return (
-    <Container>
-      <Jumbotron>
-        <h1 className="display-5">Web Share API</h1>
-      </Jumbotron>
-      <div>
-        <Button variant="outline-primary"
-          onClick={share}>공유하기</Button>
-      </div>
-    </Container>
+    <DefaultSampleContent title="Web Share API">
+      <Button variant="contained" color="primary" onClick={share}>공유하기 테스트</Button>
+    </DefaultSampleContent>
   )
 }
 

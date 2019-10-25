@@ -1,16 +1,13 @@
 import React from 'react';
-import { Container, Jumbotron } from 'react-bootstrap';
 
+import DefaultSampleContent from '../DefaultSampleContent';
 import AirDrop from './AirDrop';
 
 const GsapContainer = () => {
   return (
-    <Container>
-      <Jumbotron>
-        <h1 className="display-5">GSAP 예제</h1>
-      </Jumbotron>
+    <DefaultSampleContent title="GSAP 예제">
       <AirDrop />
-    </Container>
+    </DefaultSampleContent>
   )
 }
 

@@ -1,22 +1,26 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Container, Button } from 'react-bootstrap';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 const RematchContainer = () => {
   const count = useSelector(state => state.count);
   const dispatch = useDispatch();
+
+  const classes = useStyles();
   
   return (
-    <Container>
-      <div>
-        <h1>The count is: {count}</h1>
-        <Button variant="outline-primary"
-          onClick={()=>dispatch.count.increment(1)}>Add 1</Button>
-        <Button variant="outline-secondary"
-          onClick={()=>dispatch.count.incrementAsync(1)}
-          style={{ margin: '.5em' }}>Add 1 Async</Button>
-      </div>
-    </Container>
+    <div>
+      <h1>The count is: {count}</h1>
+      <Button variant="contained" color="primary" className={classes.button} onClick={()=>dispatch.count.increment(1)}>Add 1</Button>
+      <Button variant="contained" color="secondary" className={classes.button} onClick={()=>dispatch.count.incrementAsync(1)} >Add 1 Async</Button>
+    </div>
   )
 }
 

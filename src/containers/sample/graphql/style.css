@@ -1,3 +1,17 @@
-.lst li {
-  padding: 10px 10px 10px 10px;
+.movie_list li {
+  display: inline-block;
+  padding: 3px;
+}
+
+.pagination ul {
+  display: inline-block;
+}
+
+.pagination li {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.active {
+  background-color: blue;
 }

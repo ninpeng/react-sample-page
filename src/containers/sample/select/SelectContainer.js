@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Container } from 'react-bootstrap';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { colourOptions, groupedOptions } from './data/data';
@@ -58,36 +57,34 @@ const SelectContainer = () => {
   };
 
   return (
-    <Container>
-      <div>
-        <ul className="lst">
-          <li>
-            <Select
-              options={options}
-              value={selectedOption1}
-              onChange={handleChange1}
-            />
-          </li>
-          <li>
-            <Select
-              components={animatedComponents}
-              value={selectedOption2}
-              onChange={handleChange2}
-              options={colourOptions}
-              isMulti
-            />
-          </li>
-          <li>
-            <Select
-              options={groupedOptions}
-              formatGroupLabel={formatGroupLabel}
-              value={selectedOption3}
-              onChange={handleChange3}
-            />
-          </li>
-        </ul>
-      </div>
-    </Container>
+    <div>
+      <ul className="lst">
+        <li>
+          <Select
+            options={options}
+            value={selectedOption1}
+            onChange={handleChange1}
+          />
+        </li>
+        <li>
+          <Select
+            components={animatedComponents}
+            value={selectedOption2}
+            onChange={handleChange2}
+            options={colourOptions}
+            isMulti
+          />
+        </li>
+        <li>
+          <Select
+            options={groupedOptions}
+            formatGroupLabel={formatGroupLabel}
+            value={selectedOption3}
+            onChange={handleChange3}
+          />
+        </li>
+      </ul>
+    </div>
   )
 }
 

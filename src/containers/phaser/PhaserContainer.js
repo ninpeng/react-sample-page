@@ -1,42 +1,49 @@
-import React, { Component } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import React, { useRef, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+
 import Phaser from 'phaser';
 
-class PhaserContainer extends Component {
-  game = null;
+const useStyles = makeStyles(theme => ({
+  paper: {
+    padding: theme.spacing(3, 2)
+  },
+  phaser: {
+    padding: theme.spacing(3, 2)
+  }
+}));
 
-  render () {
-    return(
-      <Container>
-        <Row>
-          <h2>Phaser3 in React</h2>
-        </Row>
-        <Row>
-          <div id="phaser"/>
-        </Row>
-      </Container>)
+const PhaserContainer = () => {
+
+  const game = useRef(null);
+  const classes = useStyles();
+
+  const preload = () => {
+    const scene = game.current.scene.scenes[0];
+
+    scene.load.setBaseURL('assets/img/');
+
+    scene.load.image('sky', 'space3.png');
+    scene.load.image('logo', 'phaser3-logo.png');
+    scene.load.image('red', 'red.png');
   }
 
-  preload () {
-    this.load.setBaseURL('assets/img/');
+  const create = () => {
+    const scene = game.current.scene.scenes[0];
 
-    this.load.image('sky', 'space3.png');
-    this.load.image('logo', 'phaser3-logo.png');
-    this.load.image('red', 'red.png');
-  }
+    scene.add.image(400, 300, 'sky');
 
-  create () {
-    this.add.image(400, 300, 'sky');
+    const particles = scene.add.particles('red');
 
-    var particles = this.add.particles('red');
-
-    var emitter = particles.createEmitter({
+    const emitter = particles.createEmitter({
         speed: 100,
         scale: { start: 1, end: 0 },
         blendMode: 'ADD'
     });
 
-    var logo = this.physics.add.image(400, 100, 'logo');
+    const logo = scene.physics.add.image(400, 100, 'logo');
 
     logo.setVelocity(100, 200);
     logo.setBounce(1, 1);
@@ -45,36 +52,51 @@ class PhaserContainer extends Component {
     emitter.startFollow(logo);
   }
 
-  componentDidMount() {
-    var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        parent: 'phaser',
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 200 }
-            }
-        },
-        scene: {
-            preload: this.preload,
-            create: this.create
-        },
-        scale: {
-          mode: Phaser.Scale.ScaleModes.FIT
+  useEffect(() => {
+    const config = {
+      type: Phaser.AUTO,
+      width: 800,
+      height: 600,
+      parent: 'phaser',
+      physics: {
+        default: 'arcade',
+        arcade: {
+          gravity: { y: 200 }
         }
-    };
-
-    this.game = new Phaser.Game(config);
-  }
-
-  componentWillUnmount() {
-    if (this.game) {
-      this.game.destroy();
-      this.game = null;
+      },
+      scene: {
+        preload: preload,
+        create: create
+      },
+      scale: {
+        mode: Phaser.Scale.ScaleModes.FIT
+      }
     }
-  }
+
+    game.current = new Phaser.Game(config);
+
+    return (() => {
+      if (game.current) {
+        game.current.destroy();
+        game.current = null;
+        console.log('unmount phaser');
+      }
+    })
+  }, []);
+
+  return (
+    <>
+      <Paper className={classes.paper}>
+        <Typography align="center" variant="h3">
+          Phaser
+        </Typography>
+      </Paper>
+      <Box className={classes.phaser} display="flex" align="center">
+        <div id="phaser"/>
+      </Box>
+      
+    </>
+  )
 }
 
 export default PhaserContainer;

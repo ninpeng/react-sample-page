@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Jumbotron } from 'react-bootstrap';
 import Select from 'react-select';
+import DefaultSampleContent from '../DefaultSampleContent';
 
 const options = [
   { value: 'KRW-BTC', label: '비트코인' },
@@ -10,13 +10,6 @@ const options = [
   { value: 'KRW-ETC', label: '이더리움클래식' },
   { value: 'KRW-ADA', label: '에이다' },
 ];
-
-const customStyles = {
-  container: (styles) => ({
-    ...styles,
-    // width: 400,
-  })
-}
 
 const formatNumber = (num) => {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -96,23 +89,17 @@ const WebSocketContainer = () => {
   }, [selectedOptions]);
 
   return (
-    <Container fluid>
-      <Jumbotron>
-        <h1 className="display-5">WebSocket API</h1>
-      </Jumbotron>
-      <div>
-        <Select
-          isMulti
-          styles={customStyles}
-          options={options}
-          value={selectedOptions}
-          onChange={handleCodeChange}
-        />
-        { selectedOptions && selectedOptions.map(option =>
-          <Ticker key={option.value} option={option} ticker={tickerData} />)
-        }
-      </div>
-    </Container>
+    <DefaultSampleContent title="WebSocket API">
+      <Select
+        isMulti
+        options={options}
+        value={selectedOptions}
+        onChange={handleCodeChange}
+      />
+      { selectedOptions && selectedOptions.map(option =>
+        <Ticker key={option.value} option={option} ticker={tickerData} />)
+      }
+    </DefaultSampleContent>
   )
 }
 

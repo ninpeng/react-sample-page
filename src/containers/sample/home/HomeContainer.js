@@ -1,13 +1,9 @@
 import React from 'react';
-import { Container, Jumbotron } from 'react-bootstrap';
+import DefaultSampleContent from '../DefaultSampleContent';
 
 const HomeContainer = () => {
   return (
-    <Container>
-      <Jumbotron>
-        <h1 className="display-5">여기는 샘플 페이지 입니다.</h1>
-      </Jumbotron>
-    </Container>
+    <DefaultSampleContent title="여기는 샘플 페이지 홈 입니다." />
   )
 }
 

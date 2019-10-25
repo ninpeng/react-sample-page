@@ -1,20 +1,30 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Route, Switch } from 'react-router-dom';
 
-import Sidebar from './Sidebar';
-import SampleContent from './SampleContent';
+import loadable from '@loadable/component';
 
-const SampleContainer = () => {
+const Home = loadable(() => import('./home/HomeContainer'));
+const Gsap = loadable(() => import('./gsap/GsapContainer'));
+const DnD = loadable(() => import('./dnd/DnDContainer'));
+const Rematch = loadable(() => import('./redux/RematchContainer'));
+const Select = loadable(() => import('./select/SelectContainer'));
+const Graphql = loadable(() => import('./graphql/GraphqlContainer'));
+const Share = loadable(() => import('./share/ShareContainer'));
+const WebSocket = loadable(() => import('./websocket/WebSocketContainer'));
+
+const SampleContent = () => {
   return (
-    <Container fluid>
-      <Row className="flex-xl-nowrap">
-        <Sidebar/>
-      </Row>
-      <Row>
-        <SampleContent/>
-      </Row>
-    </Container>
+    <Switch>
+      <Route exact path={["/sample", "/sample/home"]} component={Home} />
+      <Route exact path="/sample/gsap" component={Gsap} />
+      <Route exact path="/sample/dnd" component={DnD} />
+      <Route exact path="/sample/rematch" component={Rematch} />
+      <Route exact path="/sample/select" component={Select} />
+      <Route exact path="/sample/graphql" component={Graphql} />
+      <Route exact path="/sample/share" component={Share} />
+      <Route exact path="/sample/websocket" component={WebSocket} />
+    </Switch>
   )
 }
 
-export default SampleContainer;
+export default SampleContent;

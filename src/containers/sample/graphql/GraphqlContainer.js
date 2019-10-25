@@ -1,8 +1,21 @@
-import React, { useState } from 'react';
-import { Container, Jumbotron, Pagination } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import TablePagination from '@material-ui/core/TablePagination';
 import { gql } from 'apollo-boost';
 
 import { useQuery } from '@apollo/react-hooks';
+
+import DefaultSampleContent from '../DefaultSampleContent';
+import MovieCard from './MovieCard';
+
+import './style.css';
+
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+  },
+});
 
 const getMovieListQuery = gql`
   query getMovies($limit: Int!, $page: Int!, $rating: Float!) {
@@ -28,64 +41,65 @@ const getMovieListQuery = gql`
 `;
 
 const GraphqlContainer = () => {
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(12); // item count per page
   const [page, setPage] = useState(1);
-  const [rating, setRating] = useState(0);
+  const [rating/*, setRating*/] = useState(0);
+  const classes = useStyles();
   
-  const { loading, error, data } = useQuery(getMovieListQuery, { variables: { limit, page, rating } });
+  const { loading, error, data, refetch } = useQuery(getMovieListQuery, { variables: { limit, page, rating } });
+  
+  useEffect(() => {
+    refetch();
+  }, [refetch, page, limit]);
 
-  const PageItems = ({ movie_count, limit, page_number }) => {
-
-    const pageCount = Math.ceil(movie_count / limit);
-
-    return (
-      <>
-        <Pagination.First />
-        <Pagination.Prev />
-        <Pagination.Item>{1}</Pagination.Item>
-        <Pagination.Ellipsis />
-
-        <Pagination.Item>{page_number-2}</Pagination.Item>
-        <Pagination.Item>{page_number-1}</Pagination.Item>
-        <Pagination.Item active>{page_number}</Pagination.Item>
-        <Pagination.Item>{page_number+1}</Pagination.Item>
-        <Pagination.Item disabled>{page_number+2}</Pagination.Item>
-
-        <Pagination.Ellipsis />
-        <Pagination.Item>{pageCount}</Pagination.Item>
-        <Pagination.Next />
-        <Pagination.Last />
-      </>
-    )
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
   }
 
+  const handleChangeRowsPerPage = (event) => {
+    setLimit(parseInt(event.target.value, 10));
+    setPage(1);
+  }  
+
   return (
-    <Container>
-      <Jumbotron>
-        <h1 className="display-5">영화 리스트</h1>
-      </Jumbotron>
-      <div>
-      { loading ?
-        <p>Loading...</p> :
-        error ?
-        <p>{error.message}</p> :
-        <div>
-          { data && data.movies.movies.map(movie => {
-              return (
-                <ul key={movie.id}>
-                  <h3>{movie.title}</h3>
-                  <img src={movie.medium_cover_image} alt="" />
-                </ul>
-              )
-            })
-          }
-          <div>
-            <Pagination><PageItems {...data.movies} /></Pagination>
-          </div>
-        </div>
-      }
-      </div>
-    </Container>
+    <DefaultSampleContent title="영화 리스트">
+    { loading ?
+      <p>Loading...</p> :
+      error ?
+      <p>{error.message}</p> :
+      <>
+        <Grid container className={classes.root} spacing={2}>
+          <Grid item xs={12}>
+            <Grid container justify="center" spacing={2}>
+              { data && data.movies.movies.map(movie => (
+                <Grid key={movie.id} item>
+                  <MovieCard movie={movie} />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <TablePagination
+          rowsPerPageOptions={[6, 12, 24]}
+          component='div'
+          count={data.movies.movie_count}
+          rowsPerPage={limit}
+          page={page}
+          labelDisplayedRows={({ from, to, count }) => `페이지 ${page} of ${Math.ceil(count/limit)}`}
+          labelRowsPerPage='페이지당 개수'
+          backIconButtonProps={{
+            'aria-label': 'previous page',
+          }}
+          nextIconButtonProps={{
+            'aria-label': 'next page',
+          }}
+          onChangePage={handleChangePage}
+          onChangeRowsPerPage={handleChangeRowsPerPage}
+        />
+      </>
+    }
+    </DefaultSampleContent>
   )
 }
 

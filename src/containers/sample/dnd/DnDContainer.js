@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import { Container } from 'react-bootstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+import DefaultSampleContent from '../DefaultSampleContent';
 
 const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
   const custom = {
@@ -71,7 +72,7 @@ const DnDContainer = () => {
   }
 
   return (
-    <Container>
+    <DefaultSampleContent>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="list">
           {provided => (
@@ -82,7 +83,7 @@ const DnDContainer = () => {
           }
         </Droppable>
       </DragDropContext>
-    </Container>
+    </DefaultSampleContent>
   )
 }
 
