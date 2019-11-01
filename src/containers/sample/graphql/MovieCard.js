@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Fade from '@material-ui/core/Fade';
+
+import Rating from '@material-ui/lab/Rating';
+import Skeleton from '@material-ui/lab/Skeleton';
+
+import LazyLoad from 'react-lazy-load';
 
 const useStyles = makeStyles(theme => ({
   card: {
     width: 230+theme.spacing(4),
     padding: theme.spacing(2),
-  },
-  media: {
-    width: 230,
-    height: 345,
   },
   year: {
     width: '100%',
@@ -31,50 +33,55 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MovieCard = ({ movie }) => {
-  const [showSummary, setShowSummary] = useState(false);
+  const [checked, setChecked] = useState(false);
   const classes = useStyles();
 
+  const history = useHistory();
+
   const onClickCard = (e) => {
-    setShowSummary((state) => !state);
+    if (movie) {
+      history.push(`/sample/graphql/detail/${movie.id}`);
+    }
   }
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} elevation={8}>
       <CardActionArea onClick={onClickCard}>
-        { showSummary ?
+        <LazyLoad width={230} height={345} once>
+          { movie ?
+            <Fade in={checked}>
+              <CardMedia
+                component="img"
+                image={movie.medium_cover_image}
+                title={movie.title}
+                onLoad={()=>setChecked(true)}
+              />
+            </Fade> :
+            <Skeleton variant="rect" width={230} height={345} />
+          }
+        </LazyLoad>
         <CardContent>
-          <Typography noWrap variant="subtitle1">
-            Summary
-          </Typography>
-          <Typography className={classes.summary} variant="body2" color="textSecondary" component="p">
-            {movie.summary}
-          </Typography>
-        </CardContent>
-        :
-        <>
-          <CardMedia
-            component="img"
-            width={230}
-            height={345}
-            image={movie.medium_cover_image}
-            title={movie.title}
-          />
-          <CardContent>
-            <Typography noWrap variant="subtitle1">
-              {movie.title}
-            </Typography>
-            <Box display="flex" alignItems="center">
-              <Typography variant="subtitle2" className={classes.year}>
-                {movie.year}
+          { movie ?
+            <>
+              <Typography noWrap variant="subtitle1">
+                {movie.title}
               </Typography>
-              <Rating value={movie.rating/2} precision={0.05} size='small' readOnly />
-            </Box>
-          </CardContent>
-        </>
-        }
+              <Box display="flex" alignItems="center">
+                <Typography variant="subtitle2" className={classes.year}>
+                  {movie.year}
+                </Typography>
+                <Rating value={movie.rating/2} precision={0.05} size='small' readOnly />
+              </Box>
+            </> :
+            <>
+              <Skeleton />
+              <Skeleton />
+            </>
+          }
+        </CardContent>
       </CardActionArea>
     </Card>
-  );
+  )
 }
 
 export default MovieCard;

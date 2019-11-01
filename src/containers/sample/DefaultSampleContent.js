@@ -20,7 +20,7 @@ const DefaultSampleContent = ({ title, children }) => {
     <Grid container className={classes.root} spacing={3}>
       <Grid item xs={12}>
       { title &&
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={8}>
           <Typography align="center" variant="h3">
             {title}
           </Typography>

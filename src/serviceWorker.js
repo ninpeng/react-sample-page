@@ -74,6 +74,13 @@ function registerValidSW(swUrl, config) {
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
 
+              // https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
+              // skipWaiting 옵션 참조
+              // skipWaiting 기본 값이 false 일때는 서비스워커에 메시지로 직접 전달해야된다.
+              // 이렇게 강제로 skipWaiting을 하게되면 업데이트가 되었을 때 새로운 서비스워커로 바로 교체한다.
+              // skip하지 않으면 브라우저를 모두 닫아서 서비스워커가 종료 될때까지 waiting 상태에서 대기하고 있음
+              installingWorker.postMessage({ type: 'SKIP_WAITING' }); // 업데이트 후 페이지 이동 시 오류 발생하여 삭제
+
               // Execute callback
               if (config && config.onUpdate) {
                 config.onUpdate(registration);

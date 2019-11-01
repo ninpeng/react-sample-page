@@ -20,7 +20,7 @@ const SampleContent = () => {
       <Route exact path="/sample/dnd" component={DnD} />
       <Route exact path="/sample/rematch" component={Rematch} />
       <Route exact path="/sample/select" component={Select} />
-      <Route exact path="/sample/graphql" component={Graphql} />
+      <Route path="/sample/graphql" component={Graphql} />
       <Route exact path="/sample/share" component={Share} />
       <Route exact path="/sample/websocket" component={WebSocket} />
     </Switch>
