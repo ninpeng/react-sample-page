@@ -1,0 +1,38 @@
+{
+  "home" : {
+    "title": "Home",
+    "url": "/sample/home"
+  },
+  "gsap": {
+    "title": "GSAP",
+    "url": "/sample/gsap"
+  },
+  "dnd": {
+    "title": "Drag & Drop",
+    "url": "/sample/dnd"
+  },
+  "rematch": {
+    "title": "Redux-Rematch",
+    "url": "/sample/rematch"
+  },
+  "select": {
+    "title": "react-select",
+    "url": "/sample/select"
+  },
+  "graphql": {
+    "title": "GraphQL",
+    "url": "/sample/graphql"
+  },
+  "share": {
+    "title": "Share API",
+    "url": "/sample/share"
+  },
+  "websocket": {
+    "title": "WebSocket",
+    "url": "/sample/websocket"
+  },
+  "disabled": {
+    "title": "Disabled Menu",
+    "disabled": true
+  }
+}

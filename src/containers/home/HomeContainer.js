@@ -13,7 +13,7 @@ const HomeContainer = () => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={8}>
       <Typography align="center" variant="h3">
         Hello, world!
       </Typography>

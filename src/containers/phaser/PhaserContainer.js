@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3, 2)
   },
   phaser: {
-    padding: theme.spacing(3, 2)
+    padding: theme.spacing(3, 2),
+    maxHeight: 600
   }
 }));
 
@@ -86,7 +87,7 @@ const PhaserContainer = () => {
 
   return (
     <>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={8}>
         <Typography align="center" variant="h3">
           Phaser
         </Typography>

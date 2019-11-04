@@ -1,0 +1,17 @@
+{
+  "home" : {
+    "title": "Home",
+    "url": "/home"
+  },
+  "sample": {
+    "title": "Sample"
+  },
+  "phaser": {
+    "title": "Phaser",
+    "url": "/phaser"
+  },
+  "tbd": {
+    "title": "TBD",
+    "disabled": true
+  }
+}

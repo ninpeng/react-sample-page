@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import loadable from '@loadable/component';
@@ -8,6 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 
 import Navbars from './Navbars';
+import Drawer from './Drawer';
 
 const Home = loadable(() => import('./home/HomeContainer'));
 const Sample = loadable(() => import('./sample/SampleContainer'));
@@ -28,14 +29,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const DefaultLayout = () => {
-
+const DefaultLayout = ({ location }) => {
   const classes = useStyles();
-
+  const [open, setOpen] = useState(false);
+  
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Navbars />
+      <Navbars setOpen={setOpen} />
+      <Drawer open={open} setOpen={setOpen} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
