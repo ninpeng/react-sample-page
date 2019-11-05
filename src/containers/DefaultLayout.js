@@ -17,7 +17,7 @@ const NoMatch = loadable(() => import('./nomatch/NomatchContainer'));
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    // display: 'flex',
   },
   content: {
     flexGrow: 1,

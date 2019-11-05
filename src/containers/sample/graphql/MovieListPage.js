@@ -57,33 +57,26 @@ const MovieListPage = () => {
 
   return (
     <DefaultSampleContent title="영화 리스트">
-    { error ?
-      <p>{error.message}</p> :
-      <>
-        <Grid container className={classes.root} spacing={2}>
-          <Grid item xs={12}>
-            <Grid container justify="center" spacing={2}>
-              {(loading ? Array.from(Array(limit)) : data.movies.movies).map((movie, index) => (
-                <Grid key={movie ? movie.id : index} item>
-                  <MovieCard movie={movie} />
-                </Grid>
-              ))}
+      { error ?
+        <p>{error.message}</p> :
+        <Grid className={classes.root} container spacing={2}>
+          {(loading ? Array.from(Array(limit)) : data.movies.movies).map((movie, index) => (
+            <Grid key={movie ? movie.id : index} container item justify="center" xs={12} sm={6} md={4} lg={3}>
+              <MovieCard movie={movie} />
             </Grid>
-          </Grid>
+          ))}
         </Grid>
-
-        <Box display="flex" py={3} justifyContent="center">
-          <Pagination
-            limit={limit}
-            offset={offset}
-            total={data ? data.movies.movie_count : 1}
-            reduced
-            size="small"
-            onClick={handleChangePage}
-          />
-        </Box>
-      </>
-    }
+      }
+      <Box display="flex" py={3} justifyContent="center">
+        <Pagination
+          limit={limit}
+          offset={offset}
+          total={data ? data.movies.movie_count : 1}
+          reduced
+          size="small"
+          onClick={handleChangePage}
+        />
+      </Box>
     </DefaultSampleContent>
   )
 }

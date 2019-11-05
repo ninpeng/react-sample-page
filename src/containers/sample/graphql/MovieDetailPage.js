@@ -110,9 +110,11 @@ const MovieDetailPage = ({ match }) => {
                     <Typography variant="subtitle1">
                       장르 {movie.genres.join('۰')}
                     </Typography>
-                    <Typography variant="subtitle1">
-                      시간 {movie.runtime}분
-                    </Typography>
+                    { movie.runtime &&
+                      <Typography variant="subtitle1">
+                        시간 {movie.runtime}분
+                      </Typography>
+                    }
                     <Typography variant="subtitle1">
                       언어 {movie.language}
                     </Typography>

@@ -14,15 +14,25 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 import LazyLoad from 'react-lazy-load';
 
+const imgWidth = 230;
+const imgHeight = 345;
+
 const useStyles = makeStyles(theme => ({
   card: {
-    width: 230+theme.spacing(4),
+    width: imgWidth + theme.spacing(4),
     padding: theme.spacing(2),
+  },
+  divider: {
+    height: theme.spacing(1)
+  },
+  cardContent: {
+    background: '#EFF6FF',
+    padding: theme.spacing(1),
   },
   year: {
     width: '100%',
   },
-
+  
   // summary: {
   //   height: 60,
   //   overflow: 'hidden',
@@ -47,7 +57,7 @@ const MovieCard = ({ movie }) => {
   return (
     <Card className={classes.card} elevation={8}>
       <CardActionArea onClick={onClickCard}>
-        <LazyLoad width={230} height={345} once>
+        <LazyLoad width={imgWidth} height={imgHeight} once>
           { movie ?
             <Fade in={checked}>
               <CardMedia
@@ -57,10 +67,11 @@ const MovieCard = ({ movie }) => {
                 onLoad={()=>setChecked(true)}
               />
             </Fade> :
-            <Skeleton variant="rect" width={230} height={345} />
+            <Skeleton variant="rect" width="100%" height="100%" />
           }
         </LazyLoad>
-        <CardContent>
+        <div className={classes.divider} />
+        <CardContent className={classes.cardContent}>
           { movie ?
             <>
               <Typography noWrap variant="subtitle1">
