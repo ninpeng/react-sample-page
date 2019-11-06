@@ -1,0 +1,10 @@
+{
+  "data": [
+    { "value": "KRW-BTC", "label": "비트코인" },
+    { "value": "KRW-ETH", "label": "이더리움" },
+    { "value": "KRW-LTC", "label": "라이트코인" },
+    { "value": "KRW-XRP", "label": "리플" },
+    { "value": "KRW-ETC", "label": "이더리움클래식" },
+    { "value": "KRW-ADA", "label": "에이다" }
+  ]
+}

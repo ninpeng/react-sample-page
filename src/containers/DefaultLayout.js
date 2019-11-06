@@ -46,7 +46,7 @@ const DefaultLayout = ({ location }) => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/sample" component={Sample} />
             <Route exact path="/phaser" component={Phaser} />
             <Route component={NoMatch} />

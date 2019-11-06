@@ -17,7 +17,7 @@ const DefaultSampleContent = ({ title, children }) => {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root} spacing={3}>
+    <Grid container className={classes.root} justify="center" spacing={3}>
       <Grid item xs={12}>
       { title &&
         <Paper className={classes.paper} elevation={8}>
@@ -27,7 +27,7 @@ const DefaultSampleContent = ({ title, children }) => {
         </Paper>
       }
       </Grid>
-      <Grid item xs={12}>
+      <Grid item>
         {children}
       </Grid>
     </Grid>

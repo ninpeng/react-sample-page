@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { init } from '@rematch/core';
 import { Provider } from 'react-redux';
+import { SnackbarProvider } from 'notistack';
 import * as models from './models';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -16,7 +17,15 @@ const store = init({
 
 const Root = () => (
   <Provider store={store}>
-    <App />
+    <SnackbarProvider
+      maxSnack={3}
+      dense
+      preventDuplicate
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      autoHideDuration={2000}
+    >
+      <App />
+    </SnackbarProvider>
   </Provider>
 );
 

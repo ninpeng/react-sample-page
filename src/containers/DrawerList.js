@@ -35,7 +35,7 @@ const DrawerListItem = ({ icon, nested=false, title, url, onClick, expand=false,
       className={nested ? classes.nested : null}
       component={(!expand && url) ? RouterLink : 'div'}
       to={url}
-      selected={match && match.isExact}
+      selected={!expand && match && match.isExact}
       onClick={onClick}
       disabled={disabled}
     >

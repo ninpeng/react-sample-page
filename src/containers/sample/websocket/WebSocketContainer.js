@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DefaultSampleContent from '../DefaultSampleContent';
 import Ticker from './Ticker';
+import options from './options.json';
 
 const useStyles = makeStyles(theme => ({
   selectGrid: {
@@ -14,15 +15,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 600,
   }
 }));
-
-const options = [
-  { value: 'KRW-BTC', label: '비트코인' },
-  { value: 'KRW-ETH', label: '이더리움' },
-  { value: 'KRW-LTC', label: '라이트코인' },
-  { value: 'KRW-XRP', label: '리플' },
-  { value: 'KRW-ETC', label: '이더리움클래식' },
-  { value: 'KRW-ADA', label: '에이다' },
-];
 
 const WebSocketContainer = () => {
   const [selectedOptions, setSelectedOptions] = useState(null);
@@ -83,7 +75,7 @@ const WebSocketContainer = () => {
         <Select
           className={classes.select}
           isMulti
-          options={options}
+          options={options.data}
           value={selectedOptions}
           onChange={handleCodeChange}
         />
