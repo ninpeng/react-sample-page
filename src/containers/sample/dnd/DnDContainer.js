@@ -3,6 +3,27 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import DefaultSampleContent from '../DefaultSampleContent';
 
+const grid = 8;
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: "none",
+  padding: grid * 2,
+  margin: `0 0 ${grid}px 0`,
+
+  // change background colour if dragging
+  background: isDragging ? "lightgreen" : "grey",
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? "lightblue" : "lightgrey",
+  padding: grid,
+  width: 250
+});
+
 const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
   const custom = {
     id: `id-${k}`,
@@ -23,18 +44,15 @@ const reorder = (list, startIndex, endIndex) => {
 const Quote = ({ quote, index }) => {
   return (
     <Draggable draggableId={quote.id} index={index}>
-      {provided => (
+      {(provided, snapshot) => (
         <div
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
-          // style={{
-          //   width: '200px',
-          //   border: '1px solid grey',
-          //   marginBottom: '8px',
-          //   backgroundColor: 'lightblue',
-          //   padding: '8px'
-          // }}
+          style={getItemStyle(
+            snapshot.isDragging,
+            provided.draggableProps.style
+          )}
         >
           {quote.content}
         </div>
@@ -75,11 +93,16 @@ const DnDContainer = () => {
     <DefaultSampleContent>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="list">
-          {provided => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
+          {(provided, snapshot) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              style={getListStyle(snapshot.isDraggingOver)}
+            >
               <QuoteList quotes={state.quotes} />
               {provided.placeholder}
-            </div>)
+            </div>
+            )
           }
         </Droppable>
       </DragDropContext>
