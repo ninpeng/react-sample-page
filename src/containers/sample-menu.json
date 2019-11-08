@@ -1,8 +1,4 @@
 {
-  "home" : {
-    "title": "Sample Home",
-    "url": "/sample/home"
-  },
   "gsap": {
     "title": "GSAP",
     "url": "/sample/gsap"

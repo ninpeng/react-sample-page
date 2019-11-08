@@ -1,25 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import DefaultSampleContent from '../DefaultSampleContent';
 import Ticker from './Ticker';
 import options from './options.json';
 
-const useStyles = makeStyles(theme => ({
-  selectGrid: {
-    padding: theme.spacing(2),
-  },
-  select: {
-    width: '100%',
-    maxWidth: 600,
-  }
-}));
-
 const WebSocketContainer = () => {
   const [selectedOptions, setSelectedOptions] = useState(null);
   const [tickerData, setTickerData] = useState({});
-  const classes = useStyles();
 
   const handleCodeChange = selectedOption => {
     setSelectedOptions(selectedOption);
@@ -71,9 +59,8 @@ const WebSocketContainer = () => {
 
   return (
     <DefaultSampleContent title="WebSocket API">
-      <Grid className={classes.selectGrid} container item xs justify="center">
+      <Grid item xs={12} sm={10} md={8} lg={6}>
         <Select
-          className={classes.select}
           isMulti
           options={options.data}
           value={selectedOptions}

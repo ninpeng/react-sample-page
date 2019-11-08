@@ -21,13 +21,13 @@ const DefaultSampleContent = ({ title, children }) => {
       <Grid item xs={12}>
       { title &&
         <Paper className={classes.paper} elevation={8}>
-          <Typography align="center" variant="h3">
+          <Typography align="center" variant="h4">
             {title}
           </Typography>
         </Paper>
       }
       </Grid>
-      <Grid item>
+      <Grid container item xs={12} justify="center">
         {children}
       </Grid>
     </Grid>

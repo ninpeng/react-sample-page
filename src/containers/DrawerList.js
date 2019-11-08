@@ -11,7 +11,7 @@ import Collapse from '@material-ui/core/Collapse';
 import HomeIcon from '@material-ui/icons/Home';
 import DescriptionIcon from '@material-ui/icons/Description';
 import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
-import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import BuildIcon from '@material-ui/icons/Build';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -74,8 +74,7 @@ const DrawerList = () => {
           </List>
         </Collapse>
         <DrawerListItem icon={<AirplanemodeActiveIcon />} {...menu['phaser']} />
-        <Divider />
-        <DrawerListItem icon={<NotInterestedIcon />} {...menu['tbd']} />
+        <DrawerListItem icon={<BuildIcon />} {...menu['roadmap']} />
       </List>
     </div>
   )
