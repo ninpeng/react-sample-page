@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Audits Score
+
+![Audits Score Image](https://user-images.githubusercontent.com/12179294/68574898-495eed80-04ae-11ea-9762-286575a18686.png)
+
+Best Practices 항목 중 HTTP/2 사용 항목이 통과되지 않았음(heroku는 아직 HTTP/2를 지원하지 않음)
 
 ## Available Scripts
 
