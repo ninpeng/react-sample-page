@@ -6,7 +6,7 @@
   "https_only": true,
   "headers": {
     "/**": {
-      "Cache-Control": "max-age=512000",
+      "Cache-Control": "max-age=31557600",
       "Strict-Transport-Security": "max-age=31557600"
     }
   }
