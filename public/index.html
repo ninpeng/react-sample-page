@@ -51,7 +51,7 @@
     <script defer>
       const { host, protocol } = location;
 
-      if (host === "ninpeng.heroku.com" && protocol !== "https:") {
+      if (host === "%PUBLIC_URL%" && protocol !== "https:") {
         location.protocol = "https";
       }
     </script>
