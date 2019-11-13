@@ -11,12 +11,13 @@ import Collapse from '@material-ui/core/Collapse';
 import HomeIcon from '@material-ui/icons/Home';
 import DescriptionIcon from '@material-ui/icons/Description';
 import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
+import HttpsIcon from '@material-ui/icons/Https';
 import BuildIcon from '@material-ui/icons/Build';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-import menu from './menu.json';
-import sampleMenu from './sample-menu.json';
+import menu from 'json/menu.json';
+import sampleMenu from 'json/sample-menu.json';
 
 const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
@@ -74,6 +75,7 @@ const DrawerList = () => {
           </List>
         </Collapse>
         <DrawerListItem icon={<AirplanemodeActiveIcon />} {...menu['phaser']} />
+        <DrawerListItem icon={<HttpsIcon />} {...menu['bitly']} />
         <DrawerListItem icon={<BuildIcon />} {...menu['roadmap']} />
       </List>
     </div>

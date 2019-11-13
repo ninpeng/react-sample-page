@@ -13,6 +13,7 @@ import Drawer from './Drawer';
 const Home = loadable(() => import('./home/HomeContainer'));
 const Sample = loadable(() => import('./sample/SampleContainer'));
 const Phaser = loadable(() => import('./phaser/PhaserContainer'));
+const Bitly = loadable(() => import('./bitly/BitlyContainer'));
 const Roadmap = loadable(() => import('./roadmap/RoadmapContainer'));
 const NoMatch = loadable(() => import('./nomatch/NomatchContainer'));
 
@@ -50,6 +51,7 @@ const DefaultLayout = ({ location }) => {
             <Route exact path="/" component={Home} />
             <Route path="/sample" component={Sample} />
             <Route exact path="/phaser" component={Phaser} />
+            <Route exact path="/bitly" component={Bitly} />
             <Route exact path="/roadmap" component={Roadmap} />
             <Route component={NoMatch} />
           </Switch>
