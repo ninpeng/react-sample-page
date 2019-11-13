@@ -4,7 +4,7 @@
 
 Best Practices 항목 중 HTTP/2 사용 항목이 통과되지 않았음(heroku는 아직 HTTP/2를 지원하지 않음)
 
-문서는 1.0버전 완성하며 작성 예정입니다.
+문서는 1.0버전 완성한 후 작성 예정입니다.
 
 ## Available Scripts
 
