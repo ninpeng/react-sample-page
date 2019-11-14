@@ -1,6 +1,7 @@
-## Build : [![Build Status](https://travis-ci.org/ninpeng/react-sample-page.svg?branch=master)](https://travis-ci.org/ninpeng/react-sample-page)
-## Web : [![Netlify Status](https://api.netlify.com/api/v1/badges/eceee28a-6f03-48f7-9faf-5f3a85893d22/deploy-status)](https://app.netlify.com/sites/ninpeng/deploys)
-## Server : ![Heroku](https://heroku-badge.herokuapp.com/?app=ninpeng-movie)
+### WebPage deploy status
+[![Netlify Status](https://api.netlify.com/api/v1/badges/eceee28a-6f03-48f7-9faf-5f3a85893d22/deploy-status)](https://app.netlify.com/sites/ninpeng/deploys) ![Heroku](https://heroku-badge.herokuapp.com/?app=ninpeng)
+### Server deploy status
+![Heroku](https://heroku-badge.herokuapp.com/?app=ninpeng-movie)
 
 ## Audits Score
 
