@@ -5,7 +5,8 @@
 
 ## Audits Score
 
-![Audits Score Image](https://user-images.githubusercontent.com/12179294/68574898-495eed80-04ae-11ea-9762-286575a18686.png)
+![Audit Score image](https://user-images.githubusercontent.com/12179294/68830771-f4121e80-06ef-11ea-99e0-0fce7225b551.png)
+
 
 Best Practices 항목 중 HTTP/2 사용 항목이 통과되지 않았음(heroku는 아직 HTTP/2를 지원하지 않음)
 
