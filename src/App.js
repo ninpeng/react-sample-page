@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-hooks';
+
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
 // import fetch from 'unfetch';
 import 'unfetch/polyfill';
 
@@ -15,14 +19,26 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const theme = useMemo(() =>
+    createMuiTheme({
+      palette: {
+        type: prefersDarkMode ? 'dark' : 'light'
+      }
+    }),
+    [prefersDarkMode]
+  );
+
   return (
-    <ApolloProvider client={client}>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" name="Home" component={DefaultLayout} />
-        </Switch>
-      </BrowserRouter>
-    </ApolloProvider>
+    <ThemeProvider theme={theme}>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" name="Home" component={DefaultLayout} />
+          </Switch>
+        </BrowserRouter>
+      </ApolloProvider>
+    </ThemeProvider>
   );
 }
 
