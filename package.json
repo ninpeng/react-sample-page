@@ -34,7 +34,7 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "start": "cross-env react-scripts start",
-    "build": "cross-env PUBLIC_URL=https://ninpeng.herokuapp.com react-scripts build",
+    "build": "cross-env PUBLIC_URL=https://ninpeng.netlify.com react-scripts build",
     "test": "cross-env react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -56,6 +56,6 @@
   "devDependencies": {
     "cross-env": "^6.0.3"
   },
-  "homepage": "https://ninpeng.herokuapp.com",
+  "homepage": "https://ninpeng.netlify.com",
   "license": "MIT"
 }
