@@ -9,7 +9,7 @@ import 'unfetch/polyfill';
 import DefaultLayout from './containers/DefaultLayout';
 
 const client = new ApolloClient({
-  uri: 'https://ninpeng-movie.netlify.com',
+  uri: 'https://ninpeng-movie.herokuapp.com',
   cache: new InMemoryCache(),
   // fetchOptions: { fetch },
 });
