@@ -1,16 +1,14 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ApolloClient from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from '@apollo/react-hooks';
 
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
 // import fetch from 'unfetch';
 import 'unfetch/polyfill';
 
-import DefaultLayout from './containers/DefaultLayout';
+import DefaultLayout from 'containers/DefaultLayout';
+import { CustomThemeProvider } from 'utils/CustomThemeProvider';
 
 const client = new ApolloClient({
   uri: 'https://ninpeng-movie.herokuapp.com',
@@ -19,18 +17,8 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const theme = useMemo(() =>
-    createMuiTheme({
-      palette: {
-        type: prefersDarkMode ? 'dark' : 'light'
-      }
-    }),
-    [prefersDarkMode]
-  );
-
   return (
-    <ThemeProvider theme={theme}>
+    <CustomThemeProvider>
       <ApolloProvider client={client}>
         <BrowserRouter>
           <Switch>
@@ -38,7 +26,7 @@ function App() {
           </Switch>
         </BrowserRouter>
       </ApolloProvider>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }
 
