@@ -1,51 +1,60 @@
-import React, {useEffect, useRef} from 'react';
-import {TweenMax} from 'gsap';
+import React, { useEffect } from 'react';
+import { gsap } from 'gsap';
 
 import airplane from './image/airplane.svg';
 import airplaneShadow from './image/airplane_shadow.svg';
 import airplaneSmoke from './image/airplane_smoke.svg';
 import gas from './image/GAS.png';
 
-const gasArray = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800];
-
 const basicStyles = {
   zIndex: 1000,
-  position: 'absolute',
+  position: 'relative',
   visibility: 'hidden'
 }
 
 const styles = {
   left: -400,
   width: 300,
-  position: 'absolute'
+  position: 'relative'
 }
 
-function Airdrop() {
-  const imgRef = useRef(null);
-  const gasRef = useRef([]);
+const Gas = ({ left }) => {
+  return (
+    <img className="gsap-gas" src={gas} width="30" height="30" alt="" style={{ left: left, top: 100, position: 'absolute' }} />
+  );
+}
+
+const Gases = () => {
+  let gasArray = [];
+
+  for (let i=0; i<window.innerWidth; i+=100) {
+    gasArray.push(<Gas key={i} left={i} />);
+  }
+
+  return gasArray;
+}
+
+const Airdrop = ({ show }) => {
 
   useEffect(() => {
-    if (imgRef && imgRef.current) {
-      TweenMax.to(imgRef.current, 5,
-        { delay: 1.5, visibility: 'visible', x: window.innerWidth+500 });
-    }
+    if (show) {
+      gsap.to(".gsap-airpalne",
+        { delay: 0.1, duration: 4, visibility: 'visible', opacity: 0, x: window.innerWidth });
 
-    if (gasRef && gasRef.current) {
-      TweenMax.staggerTo(gasRef.current, 4, { delay: 1.9, visibility: 'visible' }, 0.14);
-      TweenMax.staggerTo(gasRef.current, 4, { delay: 1.9, opacity: 0, rotation: 900, x: '-=250', y: window.innerHeight }, 0.14);
+      gsap.to(".gsap-gas",
+        { delay: 0.5, duration: 4, stagger: 0.16, visibility: 'visible', opacity: 0, rotation: 900, x: '-=250', y: window.innerHeight-400 });
     }
-  }, []);
+  }, [show]);
 
   return (
     <div style={basicStyles}>
-      <div style={styles} ref={imgRef}>
-        <img src={airplaneShadow} x="-200px" width="100%" height="auto" alt="" style={{ top: '30px', position: 'absolute' }} />
+      <div className="gsap-airpalne" style={styles}>
+        <img src={airplaneShadow} width="100%" height="auto" alt="" style={{ top: '30px', position: 'absolute' }} />
         <img src={airplaneSmoke} width="100%" height="auto" alt="" style={{ left: '-80px', position: 'absolute' }} />
         <img src={airplane} width="100%" height="auto" alt="" style={{ position: 'absolute' }} />
       </div>
       <div>
-      { gasArray.map((item, index) =>
-        <img key={index} ref={gas=>gasRef.current[index]=gas} src={gas} width="30" height="30" alt="" style={{ left: item, top: 100, position: 'absolute' }} />) }
+        <Gases />
       </div>
     </div>
   )
