@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
 import DefaultSampleContent from '../DefaultSampleContent';
 
 const grid = 8;

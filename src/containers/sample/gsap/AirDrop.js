@@ -7,15 +7,15 @@ import airplaneSmoke from './image/airplane_smoke.svg';
 import gas from './image/GAS.png';
 
 const basicStyles = {
+  left: 0,
+  top: 100,
   zIndex: 1000,
-  position: 'relative',
+  position: 'absolute',
   visibility: 'hidden'
 }
 
 const styles = {
-  left: -400,
   width: 300,
-  position: 'relative'
 }
 
 const Gas = ({ left }) => {
@@ -39,10 +39,10 @@ const Airdrop = ({ show }) => {
   useEffect(() => {
     if (show) {
       gsap.to(".gsap-airpalne",
-        { delay: 0.1, duration: 4, visibility: 'visible', opacity: 0, x: window.innerWidth });
+        { duration: 4, visibility: 'visible', opacity: 0, x: window.innerWidth });
 
       gsap.to(".gsap-gas",
-        { delay: 0.5, duration: 4, stagger: 0.16, visibility: 'visible', opacity: 0, rotation: 900, x: '-=250', y: window.innerHeight-400 });
+        { duration: 4, stagger: 0.17, visibility: 'visible', opacity: 0, rotation: 900, x: '-=250', y: window.innerHeight-400 });
     }
   }, [show]);
 

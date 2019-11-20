@@ -9,7 +9,8 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(3, 2)
+    padding: theme.spacing(3, 2),
+    marginBottom: theme.spacing(2)
   }
 }));
 
@@ -27,9 +28,7 @@ const DefaultSampleContent = ({ title, children }) => {
         </Paper>
       }
       </Grid>
-      <Grid container item xs={12} justify="center">
-        {children}
-      </Grid>
+      {children}
     </Grid>
   )
 }

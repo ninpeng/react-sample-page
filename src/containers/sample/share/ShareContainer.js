@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { useSnackbar } from 'notistack';
 
@@ -24,9 +23,7 @@ const ShareContainer = () => {
 
   return (
     <DefaultSampleContent title="Web Share API">
-      <Grid>
-        <Button variant="contained" color="primary" onClick={share}>공유하기 테스트</Button>
-      </Grid>
+      <Button variant="contained" color="primary" onClick={share}>공유하기 테스트</Button>
     </DefaultSampleContent>
   )
 }

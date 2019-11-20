@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { colourOptions, groupedOptions } from './data/data';
-
-import './style.css';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -29,6 +29,11 @@ const groupBadgeStyles = {
   textAlign: 'center',
 };
 
+const useStyles = makeStyles(theme => ({
+  select: {
+    width: 500,
+  },
+}));
 
 const formatGroupLabel = data => (
   <div style={groupStyles}>
@@ -40,6 +45,7 @@ const formatGroupLabel = data => (
 const animatedComponents = makeAnimated();
 
 const SelectContainer = () => {
+  const classes = useStyles();
   const [selectedOption1, setSelectedOption1] = useState(null);
   const [selectedOption2, setSelectedOption2] = useState(null);
   const [selectedOption3, setSelectedOption3] = useState(null);
@@ -57,34 +63,32 @@ const SelectContainer = () => {
   };
 
   return (
-    <div>
-      <ul className="lst">
-        <li>
-          <Select
-            options={options}
-            value={selectedOption1}
-            onChange={handleChange1}
-          />
-        </li>
-        <li>
-          <Select
-            components={animatedComponents}
-            value={selectedOption2}
-            onChange={handleChange2}
-            options={colourOptions}
-            isMulti
-          />
-        </li>
-        <li>
-          <Select
-            options={groupedOptions}
-            formatGroupLabel={formatGroupLabel}
-            value={selectedOption3}
-            onChange={handleChange3}
-          />
-        </li>
-      </ul>
-    </div>
+    <Grid container direction="column" alignContent="center" spacing={3}>
+      <Grid item className={classes.select} xs={12}>
+        <Select
+          options={options}
+          value={selectedOption1}
+          onChange={handleChange1}
+        />
+      </Grid>
+      <Grid item className={classes.select} xs={12}>
+        <Select
+          components={animatedComponents}
+          value={selectedOption2}
+          onChange={handleChange2}
+          options={colourOptions}
+          isMulti
+        />
+      </Grid>
+      <Grid item className={classes.select} xs={12}>
+        <Select
+          options={groupedOptions}
+          formatGroupLabel={formatGroupLabel}
+          value={selectedOption3}
+          onChange={handleChange3}
+        />
+      </Grid>
+    </Grid>
   )
 }
 

@@ -59,18 +59,20 @@ const WebSocketContainer = () => {
 
   return (
     <DefaultSampleContent title="WebSocket API">
-      <Grid item xs={12} sm={10} md={8} lg={6}>
-        <Select
-          isMulti
-          options={options.data}
-          value={selectedOptions}
-          onChange={handleCodeChange}
-        />
-      </Grid>
-      <Grid container spacing={2}>
-        { selectedOptions && selectedOptions.map(option =>
-          <Ticker key={option.value} option={option} ticker={tickerData} />)
-        }
+      <Grid container spacing={3} justify="center">
+        <Grid item xs={12} sm={10} md={8} lg={6}>
+          <Select
+            isMulti
+            options={options.data}
+            value={selectedOptions}
+            onChange={handleCodeChange}
+          />
+        </Grid>
+        <Grid container spacing={2}>
+          { selectedOptions && selectedOptions.map(option =>
+            <Ticker key={option.value} option={option} ticker={tickerData} />)
+          }
+        </Grid>
       </Grid>
     </DefaultSampleContent>
   )
