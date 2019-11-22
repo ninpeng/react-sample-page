@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
+
 import HomeIcon from '@material-ui/icons/Home';
 import DescriptionIcon from '@material-ui/icons/Description';
 import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
@@ -18,6 +19,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import menu from 'json/menu.json';
 import sampleMenu from 'json/sample-menu.json';
+import pkg from '../../package.json';
 
 const useStyles = makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
@@ -57,6 +59,12 @@ const DrawerList = () => {
 
   return (
     <div className={classes.toolbar}>
+      <ListItem>
+        <ListItemText
+          primary={'React-Sample-Page'}
+          secondary={`v${pkg.version}`}
+        />
+      </ListItem>
       <Divider />
       <List>
         <DrawerListItem icon={<HomeIcon />} {...menu['home']} />

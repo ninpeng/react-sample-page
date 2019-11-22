@@ -20,8 +20,16 @@ import menu from 'json/menu.json';
 import sampleMenu from 'json/sample-menu.json';
 
 const useStyles = makeStyles(theme => ({
+  appBar: {
+    [theme.breakpoints.up('lg')]: {
+      width: 'calc(100% - 240px)',
+    },
+  },
   menuButton: {
     marginRight: theme.spacing(2),
+    [theme.breakpoints.up('lg')]: {
+      display: 'none',
+    },
   },
   title: {
     flexGrow: 1,
@@ -52,7 +60,7 @@ const Navbars = ({ setOpen }) => {
   }
 
   return (
-    <AppBar position="fixed">
+    <AppBar className={classes.appBar} position="fixed">
       <Toolbar>
         <IconButton
           edge="start"
