@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -36,7 +36,7 @@ const DrawerListItem = ({ icon, nested=false, title, url, onClick, expand=false,
       className={nested ? classes.nested : null}
       component={(!expand && url) ? RouterLink : 'div'}
       to={url}
-      selected={!expand && match && match.isExact}
+      selected={!disabled && !expand && match && match.isExact}
       onClick={onClick}
       disabled={disabled}
     >
@@ -50,15 +50,10 @@ const DrawerListItem = ({ icon, nested=false, title, url, onClick, expand=false,
 const DrawerList = () => {
   const classes = useStyles();
   const [sampleOpen, setSampleOpen] = useState(false);
-  const match = useRouteMatch('/sample');
   
-  const handleClick = () => {
-    setSampleOpen(!sampleOpen);
+  const handleClick = (e) => {
+    setSampleOpen(state => !state);
   }
-
-  useEffect(() => {
-    setSampleOpen(!!match);
-  }, [match]);
 
   return (
     <div className={classes.toolbar}>

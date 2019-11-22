@@ -8,9 +8,9 @@ import gas from './image/GAS.png';
 
 const basicStyles = {
   left: 0,
-  top: 100,
-  zIndex: 1000,
-  position: 'absolute',
+  top: 200,
+  zIndex: 1300,
+  position: 'fixed',
   visibility: 'hidden'
 }
 

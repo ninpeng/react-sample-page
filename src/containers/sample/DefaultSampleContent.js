@@ -5,9 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
     padding: theme.spacing(3, 2),
     marginBottom: theme.spacing(2)
@@ -18,7 +15,7 @@ const DefaultSampleContent = ({ title, children }) => {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.root} justify="center" spacing={3}>
+    <Grid container justify="center">
       <Grid item xs={12}>
       { title &&
         <Paper className={classes.paper} elevation={8}>

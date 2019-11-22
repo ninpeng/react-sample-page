@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Pagination from 'material-ui-flat-pagination';
@@ -8,12 +7,6 @@ import { useQuery } from '@apollo/react-hooks';
 
 import DefaultSampleContent from '../DefaultSampleContent';
 import MovieCard from './MovieCard';
-
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
 
 const getMovieListQuery = gql`
   query getMovies($limit: Int!, $page: Int!, $rating: Float!) {
@@ -42,7 +35,6 @@ const MovieListPage = () => {
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
   const [rating/*, setRating*/] = useState(0);
-  const classes = useStyles();
   
   const { loading, error, data, refetch } = useQuery(getMovieListQuery, { variables: { limit, page, rating } });
   
@@ -59,9 +51,9 @@ const MovieListPage = () => {
     <DefaultSampleContent title="영화 리스트">
       { error ?
         <p>{error.message}</p> :
-        <Grid className={classes.root} container spacing={2}>
+        <Grid container spacing={2}>
           {(loading ? Array.from(Array(limit)) : data.movies.movies).map((movie, index) => (
-            <Grid key={movie ? movie.id : index} container item justify="center" xs={12} sm={6} md={4} lg={3}>
+            <Grid key={movie ? movie.id : index} container item justify="center" xs={12} sm>
               <MovieCard movie={movie} />
             </Grid>
           ))}

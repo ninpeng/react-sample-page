@@ -12,7 +12,7 @@ import Fade from '@material-ui/core/Fade';
 import Rating from '@material-ui/lab/Rating';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-import LazyLoad from 'react-lazy-load';
+import LazyLoad from 'react-lazyload';
 
 const imgWidth = 230;
 const imgHeight = 345;
@@ -26,20 +26,12 @@ const useStyles = makeStyles(theme => ({
     height: theme.spacing(1)
   },
   cardContent: {
-    background: '#EFF6FF',
+    // background: '#EFF6FF',
     padding: theme.spacing(1),
   },
   year: {
     width: '100%',
   },
-  
-  // summary: {
-  //   height: 60,
-  //   overflow: 'hidden',
-  //   display: '-webkit-box',
-  //   WebkitLineClamp: 3,
-  //   WebkitBoxOrient: 'vertical',
-  // }
 }));
 
 const MovieCard = ({ movie }) => {
@@ -57,19 +49,20 @@ const MovieCard = ({ movie }) => {
   return (
     <Card className={classes.card} elevation={8}>
       <CardActionArea onClick={onClickCard}>
-        <LazyLoad width={imgWidth} height={imgHeight} once>
-          { movie ?
+        { movie ?
+          <LazyLoad height={imgHeight} once>
             <Fade in={checked}>
               <CardMedia
                 component="img"
+                height={imgHeight}
                 image={movie.medium_cover_image}
                 title={movie.title}
                 onLoad={()=>setChecked(true)}
               />
-            </Fade> :
-            <Skeleton variant="rect" width="100%" height="100%" />
-          }
-        </LazyLoad>
+            </Fade>
+          </LazyLoad> :
+          <Skeleton variant="rect" height={imgHeight} />
+        }
         <div className={classes.divider} />
         <CardContent className={classes.cardContent}>
           { movie ?

@@ -6,12 +6,12 @@ import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import Switch from '@material-ui/core/Switch';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
 import { useChangeDarkmode } from 'utils/CustomThemeProvider';
@@ -25,6 +25,10 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+  },
+  themeSwitch: {
+    width: 60,
+    height: 40,
   },
 }));
 
@@ -48,7 +52,7 @@ const Navbars = ({ setOpen }) => {
   }
 
   return (
-    <AppBar color="default" position="fixed">
+    <AppBar position="fixed">
       <Toolbar>
         <IconButton
           edge="start"
@@ -63,15 +67,19 @@ const Navbars = ({ setOpen }) => {
           {findMenu ? findMenu.title : findSampleMenu ? findSampleMenu.title : '' }
         </Typography>
         
-        <Button color="inherit" onClick={onClickLogin}>Login</Button>
-
-        { theme.palette.type === 'dark' ? <Brightness4Icon /> : <BrightnessHighIcon /> }
         <Switch
+          className={classes.themeSwitch}
           checked={theme.palette.type === 'dark'}
           onChange={onChangeDarkmode}
+          icon={<BrightnessHighIcon />}
+          checkedIcon={<Brightness4Icon />}
         />
-        
-        <IconButton onClick={() => window.open("https://github.com/ninpeng/react-sample-page")}>
+
+        <IconButton color="inherit" onClick={onClickLogin}>
+          <AccountCircleIcon />
+        </IconButton>
+
+        <IconButton color="inherit" onClick={() => window.open("https://github.com/ninpeng/react-sample-page")}>
           <GitHubIcon />
         </IconButton>
       </Toolbar>

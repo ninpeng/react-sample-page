@@ -5,10 +5,9 @@ import loadable from '@loadable/component';
 
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
 
 import Navbars from './Navbars';
-import Drawer from './Drawer';
+import DrawerComponent from './DrawerComponent';
 
 const Home = loadable(() => import('./home/HomeContainer'));
 const Sample = loadable(() => import('./sample/SampleContainer'));
@@ -19,10 +18,16 @@ const NoMatch = loadable(() => import('./nomatch/NomatchContainer'));
 
 const useStyles = makeStyles(theme => ({
   root: {
-    // display: 'flex',
+    display: 'flex',
   },
   content: {
-    flexGrow: 1,
+    position: 'relative',
+    maxWidth: '100%',
+    margin: '0 auto',
+    padding: theme.spacing(3, 2),
+    // [theme.breakpoints.up('lg')]: {
+    //   maxWidth: 'calc(100% - 240px)',
+    // },
   },
   appBarSpacer: theme.mixins.toolbar,
   container: {
@@ -43,19 +48,17 @@ const DefaultLayout = ({ location }) => {
     <div className={classes.root}>
       <CssBaseline />
       <Navbars setOpen={setOpen} />
-      <Drawer open={open} setOpen={setOpen} />
+      <DrawerComponent open={open} setOpen={setOpen} />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/sample" component={Sample} />
-            <Route exact path="/phaser" component={Phaser} />
-            <Route exact path="/bitly" component={Bitly} />
-            <Route exact path="/roadmap" component={Roadmap} />
-            <Route component={NoMatch} />
-          </Switch>
-        </Container>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/sample" component={Sample} />
+          <Route exact path="/phaser" component={Phaser} />
+          <Route exact path="/bitly" component={Bitly} />
+          <Route exact path="/roadmap" component={Roadmap} />
+          <Route component={NoMatch} />
+        </Switch>
       </main>
     </div>
   )

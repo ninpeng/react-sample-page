@@ -11,21 +11,18 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
-import LazyLoad from 'react-lazy-load';
-
 import MovieDetailCast from './MovieDetailCast';
 import MovieDetailImageGallery from './MovieDetailImageGallery';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
     maxWidth: 1000,
   },
-
+  imgBox: {
+    flexGrow: 0,
+  },
   img: {
     margin: 'auto',
     display: 'block',
@@ -80,64 +77,60 @@ const MovieDetailPage = ({ match }) => {
   return (
     error ?
     <p>{error.message}</p> :
-    <Grid container className={classes.root} spacing={2} direction="column">
+    <Grid container spacing={2} direction="column">
       <Grid item xs={12}>
         <Paper className={classes.paper} elevation={8}>
-          <Grid container spacing={4}>
+          <Grid container justify="center" spacing={2}>
             <Grid item>
               <Box border={1} width={232} height={347} bgcolor="rgb(248, 248, 248)">
-                <LazyLoad width={230} height={345} once>
-                  { movie ?
-                    <Fade in={fade}>
-                      <img className={classes.img} alt={movie.title} src={movie.medium_cover_image} onLoad={()=>setFade(true)} />
-                    </Fade> :
-                    <Skeleton variant="rect" width={230} height={345} />
-                  }
-                </LazyLoad>
+                { movie ?
+                  <Fade in={fade}>
+                    <img className={classes.img} alt={movie.title} src={movie.medium_cover_image} onLoad={()=>setFade(true)} />
+                  </Fade> :
+                  <Skeleton variant="rect" width={230} height={345} />
+                }
               </Box>
             </Grid>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={2}>
-              { movie ?
-                <>
-                  <Grid item>
-                    <Typography className={classes.title} variant="h4" gutterBottom>
-                      {movie.title}
-                    </Typography>
+            <Grid container item xs={12} sm direction="column" spacing={1}>
+            { movie ?
+              <>
+                <Grid item>
+                  <Typography className={classes.title} variant="h4" gutterBottom>
+                    {movie.title}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    연도 {movie.year}
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    장르 {movie.genres.join('۰')}
+                  </Typography>
+                  { movie.runtime &&
                     <Typography variant="subtitle1">
-                      연도 {movie.year}
+                      시간 {movie.runtime}분
                     </Typography>
-                    <Typography variant="subtitle1">
-                      장르 {movie.genres.join('۰')}
-                    </Typography>
-                    { movie.runtime &&
-                      <Typography variant="subtitle1">
-                        시간 {movie.runtime}분
-                      </Typography>
-                    }
-                    <Typography variant="subtitle1">
-                      언어 {movie.language}
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="subtitle1">
-                      줄거리
-                    </Typography>
-                    <Typography variant="body2">
-                      {movie.description_full}
-                    </Typography>
-                  </Grid>
-                </> :
-                <>
-                  <Skeleton height={36} width={'80%'} />
-                  <Skeleton height={22} width={'40%'} />
-                  <Skeleton height={22} width={'40%'} />
-                  <Skeleton height={22} width={'40%'} />
-                  <Skeleton height={22} width={'40%'} />
-                  <Skeleton height={80} width={'100%'} />
-                </>
-              }
-              </Grid>
+                  }
+                  <Typography variant="subtitle1">
+                    언어 {movie.language}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant="subtitle1">
+                    줄거리
+                  </Typography>
+                  <Typography variant="body2">
+                    {movie.description_full}
+                  </Typography>
+                </Grid>
+              </> :
+              <Box width={300}>
+                <Skeleton height={60} />
+                <Skeleton height={24} width={'40%'} />
+                <Skeleton height={24} width={'40%'} />
+                <Skeleton height={24} width={'40%'} />
+                <Skeleton height={24} width={'40%'} />
+                <Skeleton height={130} />
+              </Box>
+            }
             </Grid>
           </Grid>
         </Paper>
