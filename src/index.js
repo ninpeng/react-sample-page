@@ -1,3 +1,6 @@
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/stable';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { init } from '@rematch/core';
@@ -6,9 +9,6 @@ import { SnackbarProvider } from 'notistack';
 import * as models from './models';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-import 'react-app-polyfill/ie9';
-import 'react-app-polyfill/stable';
 
 // generate Redux store
 const store = init({
