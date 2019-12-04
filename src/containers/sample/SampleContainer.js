@@ -10,6 +10,7 @@ const Select = loadable(() => import('./select/SelectContainer'));
 const Graphql = loadable(() => import('./graphql/GraphqlContainer'));
 const Share = loadable(() => import('./share/ShareContainer'));
 const WebSocket = loadable(() => import('./websocket/WebSocketContainer'));
+const RoughViz = loadable(() => import('./roughviz/RoughVizContainer'));
 
 const SampleContent = () => {
   return (
@@ -21,6 +22,7 @@ const SampleContent = () => {
       <Route path="/sample/graphql" component={Graphql} />
       <Route exact path="/sample/share" component={Share} />
       <Route exact path="/sample/websocket" component={WebSocket} />
+      <Route exact path="/sample/roughviz" component={RoughViz} />
     </Switch>
   )
 }

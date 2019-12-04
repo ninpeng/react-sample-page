@@ -27,8 +27,8 @@
     "title": "WebSocket",
     "url": "/sample/websocket"
   },
-  "disabled": {
-    "title": "Disabled Menu",
-    "disabled": true
+  "roughViz": {
+    "title": "roughViz chart",
+    "url": "/sample/roughviz"
   }
 }
