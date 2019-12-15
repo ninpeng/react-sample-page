@@ -9318,10 +9318,10 @@ react-redux@^7.1.1:
     prop-types "^15.7.2"
     react-is "^16.9.0"
 
-react-roughviz@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/react-roughviz/-/react-roughviz-0.1.6.tgz#80d5a8add0fc23b1bebe4e9498350f190c81d9e8"
-  integrity sha512-7AkymJUTotTTPJLRMlvs5By4fBCPKYObRwyL15r/y2QLv3z8Wattiq/nFO0aQ4LBQEeIMKug35Pfct0HvDFXmA==
+react-roughviz@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/react-roughviz/-/react-roughviz-0.1.8.tgz#9a54c68faa96c079f9f233242b8c0a4b55782853"
+  integrity sha512-6+NJHDYrYq065asZMgmTnI8IDTBPT8QtPBWOSP61fqwQksfmoDAhSNv1Mhrq9WBK4G6+ycpjyYxmXY5naMGJOA==
   dependencies:
     rough-viz "^1.0.5"
 

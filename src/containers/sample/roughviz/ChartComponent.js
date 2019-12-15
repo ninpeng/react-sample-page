@@ -14,7 +14,7 @@ const fillStyleList = ['hachure', 'cross-hatch', 'zigzag', 'dashed', 'solid', 'z
 
 const useStyles = makeStyles({
   root: {
-    width: 450,
+    width: 350,
   },
   form: {
     width: 300,
@@ -62,8 +62,8 @@ const ChartComponent = ({ type, data }) => {
           data={data}
           labels="flavor"
           values="favorite"
-          width={400}
-          height={400}
+          width={300}
+          height={300}
           roughness={roughness}
           fillStyle={fillStyle}
           fillWeight={fillWeight}
