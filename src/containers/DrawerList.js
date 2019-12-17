@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DrawerListItem = ({ icon, nested=false, title, url, onClick, expand=false, open, disabled=false }) => {
+const DrawerListItem = ({ icon, nested=false, title, url, handleClick, expand=false, open, disabled=false }) => {
   const classes = useStyles();
   const match = useRouteMatch(url);
 
@@ -39,7 +39,7 @@ const DrawerListItem = ({ icon, nested=false, title, url, onClick, expand=false,
       component={(!expand && url) ? RouterLink : 'div'}
       to={url}
       selected={!disabled && !expand && match && match.isExact}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
     >
       { icon && <ListItemIcon>{icon}</ListItemIcon> }
@@ -70,7 +70,7 @@ const DrawerList = () => {
         <DrawerListItem icon={<HomeIcon />} {...menu['home']} />
         <Divider />
         <DrawerListItem icon={<DescriptionIcon />} {...menu['sample']}
-          onClick={handleClick} expand open={sampleOpen} />
+          handleClick={handleClick} expand open={sampleOpen} />
         <Collapse in={sampleOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             { Object.values(sampleMenu).map(menu =>

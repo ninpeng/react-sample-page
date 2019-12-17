@@ -70,7 +70,7 @@ const DnDContainer = () => {
 
   const [state, setState] = useState({ quotes: initial });
 
-  function onDragEnd(result) {
+  const handleDragEnd = (result) => {
     if (!result.destination) {
       return;
     }
@@ -90,7 +90,7 @@ const DnDContainer = () => {
 
   return (
     <DefaultSampleContent>
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="list">
           {(provided, snapshot) => (
             <div

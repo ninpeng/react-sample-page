@@ -47,7 +47,7 @@ const BitlyContainer = () => {
 
   const convertedUrl = useMemo(() => convertUrl(url), [url]);
 
-  const onChangeUrl = (e) => {
+  const handleChangeUrl = (e) => {
     const value = e.target.value;
     
     setUrl(value);
@@ -55,15 +55,15 @@ const BitlyContainer = () => {
     setHelpText(value ? value.split('bit.ly/').length === 2 ? '' : '올바른 주소를 입력해 주세요.' : '');
   }
 
-  const onClickCopy = () => {
+  const handleCopyClick = () => {
     enqueueSnackbar('클립보드에 URL이 복사 되었습니다.', { variant: 'success' });
   }
 
-  const onClickShortCut = (e) => {
+  const handleClickShortCut = (e) => {
     window.open(convertedUrl);
   }
 
-  const onClickInfo = (e) => {
+  const handleClickInfo = (e) => {
     window.open(`${convertedUrl}+`);
   }
 
@@ -83,7 +83,7 @@ const BitlyContainer = () => {
               id="bitly-url"
               label="bit.ly 형식의 URL을 입력"
               value={url}
-              onChange={onChangeUrl}
+              onChange={handleChangeUrl}
               error={error}
               helperText={helpText}
               fullWidth
@@ -103,17 +103,17 @@ const BitlyContainer = () => {
             />
           </Grid>
           <Grid className={classes.iconBox} container item justify="flex-end" sm={3}>
-            <CopyToClipboard text={convertedUrl} onCopy={onClickCopy}>
+            <CopyToClipboard text={convertedUrl} onCopy={handleCopyClick}>
               <IconButton color="primary" className={classes.iconButton} aria-label="copy" disabled={!convertedUrl}>
                 <FileCopyIcon />
               </IconButton>
             </CopyToClipboard>
             
-            <IconButton color="primary" className={classes.iconButton} aria-label="short-cut" onClick={onClickShortCut} disabled={!convertedUrl}>
+            <IconButton color="primary" className={classes.iconButton} aria-label="short-cut" onClick={handleClickShortCut} disabled={!convertedUrl}>
               <OpenInNewIcon />
             </IconButton>
             
-            <IconButton color="primary" className={classes.iconButton} aria-label="info" onClick={onClickInfo} disabled={!convertedUrl}>
+            <IconButton color="primary" className={classes.iconButton} aria-label="info" onClick={handleClickInfo} disabled={!convertedUrl}>
               <InfoIcon />
             </IconButton>
           </Grid>

@@ -40,7 +40,7 @@ const MovieCard = ({ movie }) => {
 
   const history = useHistory();
 
-  const onClickCard = (e) => {
+  const handleClickCard = (e) => {
     if (movie) {
       history.push(`/sample/graphql/detail/${movie.id}`);
     }
@@ -48,7 +48,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <Card className={classes.card} elevation={8}>
-      <CardActionArea onClick={onClickCard}>
+      <CardActionArea onClick={handleClickCard}>
         { movie ?
           <LazyLoad height={imgHeight} once>
             <Fade in={checked}>

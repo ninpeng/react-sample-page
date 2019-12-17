@@ -50,12 +50,12 @@ const Navbars = ({ setOpen }) => {
   const findMenu = Object.values(menu).find(menu => location.pathname === menu.url);
   const findSampleMenu = Object.values(sampleMenu).find(menu => location.pathname.startsWith(menu.url));
 
-  const onChangeDarkmode = () => {
+  const handleChangeDarkmode = () => {
     const darkmode = theme.palette.type === 'dark' ? 'light' : 'dark';
     changeTheme({ darkmode });
   }
 
-  const onClickLogin = (e) => {
+  const handleClickLogin = (e) => {
     enqueueSnackbar('로그인은 아직 안만들었어요', { variant: 'info' });
   }
 
@@ -78,12 +78,12 @@ const Navbars = ({ setOpen }) => {
         <Switch
           className={classes.themeSwitch}
           checked={theme.palette.type === 'dark'}
-          onChange={onChangeDarkmode}
+          onChange={handleChangeDarkmode}
           icon={<BrightnessHighIcon />}
           checkedIcon={<Brightness4Icon />}
         />
 
-        <IconButton color="inherit" onClick={onClickLogin}>
+        <IconButton color="inherit" onClick={handleClickLogin}>
           <AccountCircleIcon />
         </IconButton>
 

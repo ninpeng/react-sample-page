@@ -53,7 +53,7 @@ const MovieListPage = () => {
         <p>{error.message}</p> :
         <Grid container spacing={2}>
           {(loading ? Array.from(Array(limit)) : data.movies.movies).map((movie, index) => (
-            <Grid key={movie ? movie.id : index} container item justify="center" xs={12} sm>
+            <Grid key={movie ? movie.id : index} container item justify="center" xs={12} sm lg={3}>
               <MovieCard movie={movie} />
             </Grid>
           ))}
