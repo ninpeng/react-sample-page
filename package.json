@@ -13,7 +13,7 @@
     "graphql": "^14.5.4",
     "gsap": "^3.0.1",
     "material-ui-flat-pagination": "^4.0.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "notistack": "^0.9.5",
     "phaser": "^3.20.1",
     "react": "^16.12.0",
