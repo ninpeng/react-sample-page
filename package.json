@@ -11,7 +11,7 @@
     "apollo-boost": "^0.4.4",
     "gh-pages": "^2.1.1",
     "graphql": "^14.5.4",
-    "gsap": "^3.0.1",
+    "gsap": "^3.6.0",
     "material-ui-flat-pagination": "^4.0.0",
     "node-sass": "^4.13.0",
     "notistack": "^0.9.5",
