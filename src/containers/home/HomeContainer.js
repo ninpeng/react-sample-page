@@ -6,11 +6,10 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import Fade from '@material-ui/core/Fade';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 480,
-    
-  }
+  },
 }));
 
 const HomeContainer = () => {
@@ -20,21 +19,18 @@ const HomeContainer = () => {
   return (
     <Box display="flex" justifyContent="center">
       <Card className={classes.card} elevation={10}>
-        <CardHeader
-          title="한옥마을"
-          subheader="August 30, 2019"
-        />
+        <CardHeader title="한옥마을" subheader="August 30, 2019" />
         <Fade in={checked} timeout={500}>
           <CardMedia
             component="img"
-            image={require('images/home.jpg')}
+            image={require('images/home.jpg').default}
             title="home image"
-            onLoad={()=>setChecked(true)}
+            onLoad={() => setChecked(true)}
           />
         </Fade>
       </Card>
     </Box>
-  )
-}
+  );
+};
 
 export default HomeContainer;
