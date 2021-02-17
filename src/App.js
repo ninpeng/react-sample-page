@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ApolloClient from 'apollo-boost';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Button from '@material-ui/core/Button';
 import { useSnackbar } from 'notistack';
 import { useServiceWorker } from './useServiceWorker';
@@ -19,10 +17,11 @@ const client = new ApolloClient({
   // fetchOptions: { fetch },
 });
 
-const action = () =>
-  <Button color="inherit" onClick={() => window.location.reload }>
+const action = () => (
+  <Button color="inherit" onClick={() => window.location.reload}>
     RELOAD
   </Button>
+);
 
 function App() {
   const { isUpdateAvailable } = useServiceWorker();
@@ -30,7 +29,11 @@ function App() {
 
   useEffect(() => {
     if (isUpdateAvailable) {
-      enqueueSnackbar('업데이트를 위해 새로고침을 눌러주세요.', { action, variant: 'info', persist: true });
+      enqueueSnackbar('업데이트를 위해 새로고침을 눌러주세요.', {
+        action,
+        variant: 'info',
+        persist: true,
+      });
     }
   }, [isUpdateAvailable, enqueueSnackbar]);
 

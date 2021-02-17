@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Pagination from 'material-ui-flat-pagination';
-import { gql } from 'apollo-boost';
-import { useQuery } from '@apollo/react-hooks';
+import { gql, useQuery } from '@apollo/client';
 
 import DefaultSampleContent from '../DefaultSampleContent';
 import MovieCard from './MovieCard';
@@ -31,26 +30,29 @@ const getMovieListQuery = gql`
 `;
 
 const MovieListPage = () => {
-  const [limit/*, setLimit*/] = useState(12); // item count per page
+  const [limit /*, setLimit*/] = useState(12); // item count per page
   const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
-  const [rating/*, setRating*/] = useState(0);
-  
-  const { loading, error, data, refetch } = useQuery(getMovieListQuery, { variables: { limit, page, rating } });
-  
+  const [rating /*, setRating*/] = useState(0);
+
+  const { loading, error, data, refetch } = useQuery(getMovieListQuery, {
+    variables: { limit, page, rating },
+  });
+
   useEffect(() => {
     refetch();
   }, [refetch, page, limit]);
 
   const handleChangePage = (event, offset) => {
     setOffset(offset);
-    setPage(Math.ceil(offset/limit) + 1);
-  }
+    setPage(Math.ceil(offset / limit) + 1);
+  };
 
   return (
     <DefaultSampleContent title="영화 리스트">
-      { error ?
-        <p>{error.message}</p> :
+      {error ? (
+        <p>{error.message}</p>
+      ) : (
         <Grid container spacing={2}>
           {(loading ? Array.from(Array(limit)) : data.movies.movies).map((movie, index) => (
             <Grid key={movie ? movie.id : index} container item justify="center" xs={12} sm lg={3}>
@@ -58,7 +60,7 @@ const MovieListPage = () => {
             </Grid>
           ))}
         </Grid>
-      }
+      )}
       <Box display="flex" py={3} justifyContent="center">
         <Pagination
           limit={limit}
@@ -70,7 +72,7 @@ const MovieListPage = () => {
         />
       </Box>
     </DefaultSampleContent>
-  )
-}
+  );
+};
 
 export default MovieListPage;
