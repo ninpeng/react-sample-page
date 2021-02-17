@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import Grid from '@material-ui/core/Grid';
 import DefaultSampleContent from '../DefaultSampleContent';

@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useMemo, useReducer, useContext } from 'react';
+import { createContext, useCallback, useMemo, useReducer, useContext } from 'react';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const themeKey = 'ninpeng-theme';

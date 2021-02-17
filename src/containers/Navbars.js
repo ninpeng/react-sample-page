@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
