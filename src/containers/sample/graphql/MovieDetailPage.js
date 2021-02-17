@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
@@ -67,7 +67,7 @@ const getMovieDetailQuery = gql`
 
 const MovieDetailPage = ({ match }) => {
   const classes = useStyles();
-  const [fade, setFade] = React.useState(false);
+  const [fade, setFade] = useState(false);
   const id = parseInt(match.params.id, 10);
 
   const { error, data } = useQuery(getMovieDetailQuery, { variables: { id } });

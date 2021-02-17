@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useMemo, useContext } from 'react';
+import { createContext, useState, useEffect, useMemo, useContext } from 'react';
 import * as serviceWorker from './serviceWorker';
 
-const ServiceWorkerContext = React.createContext();
+const ServiceWorkerContext = createContext();
 
 export const ServiceWorkerProvider = ({ children }) => {
   const [isUpdateAvailable, setUpdateAvailable] = useState(false);

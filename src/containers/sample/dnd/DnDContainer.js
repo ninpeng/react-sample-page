@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import { memo, useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import DefaultSampleContent from '../DefaultSampleContent';
 
@@ -60,7 +60,7 @@ const Quote = ({ quote, index }) => {
   );
 }
 
-const QuoteList = React.memo(function QuoteList({ quotes }) {
+const QuoteList = memo(function QuoteList({ quotes }) {
   return quotes.map((quote, index) => (
     <Quote quote={quote} index={index} key={quote.id} />
   ));

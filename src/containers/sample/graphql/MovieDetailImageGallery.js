@@ -1,4 +1,3 @@
-import React from 'react';
 import Swiper from 'react-id-swiper';
 import Skeleton from '@material-ui/lab/Skeleton';
 
