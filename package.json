@@ -27,7 +27,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.2",
     "react-select": "^3.0.4",
-    "swiper": "^6.4.12",
+    "swiper": "^6.5.1",
     "unfetch": "^4.2.0"
   },
   "scripts": {
