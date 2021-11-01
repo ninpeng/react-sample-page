@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
-
-import loadable from '@loadable/component';
-
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { Route, Switch } from 'react-router-dom';
+import loadable from '@loadable/component';
 
 import Navbars from './Navbars';
 import DrawerComponent from './DrawerComponent';
 
-const Home = loadable(() => import('./home/HomeContainer'));
-const Sample = loadable(() => import('./sample/SampleContainer'));
-const Phaser = loadable(() => import('./phaser/PhaserContainer'));
-const Bitly = loadable(() => import('./bitly/BitlyContainer'));
-const Roadmap = loadable(() => import('./roadmap/RoadmapContainer'));
-const NoMatch = loadable(() => import('./nomatch/NomatchContainer'));
+const PREFIX = 'DefaultLayout';
 
-const useStyles = makeStyles(theme => ({
-  root: {
+const classes = {
+  root: `${PREFIX}-root`,
+  content: `${PREFIX}-content`,
+  appBarSpacer: `${PREFIX}-appBarSpacer`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.root}`]: {
     display: 'flex',
   },
-  content: {
+
+  [`& .${classes.content}`]: {
     position: 'relative',
     maxWidth: '100%',
     margin: '0 auto',
@@ -29,23 +29,26 @@ const useStyles = makeStyles(theme => ({
     //   maxWidth: 'calc(100% - 240px)',
     // },
   },
-  appBarSpacer: theme.mixins.toolbar,
-  container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
-  },
+
+  [`& .${classes.appBarSpacer}`]: theme.mixins.toolbar,
 }));
 
+const Home = loadable(() => import('./home/HomeContainer'));
+const Sample = loadable(() => import('./sample/SampleContainer'));
+const Phaser = loadable(() => import('./phaser/PhaserContainer'));
+const Bitly = loadable(() => import('./bitly/BitlyContainer'));
+const Roadmap = loadable(() => import('./roadmap/RoadmapContainer'));
+const NoMatch = loadable(() => import('./nomatch/NomatchContainer'));
+
 const DefaultLayout = ({ location }) => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
-  
+
   useEffect(() => {
     setOpen(false);
   }, [location.pathname]);
-  
+
   return (
-    <div className={classes.root}>
+    <Root className={classes.root}>
       <CssBaseline />
       <Navbars setOpen={setOpen} />
       <DrawerComponent open={open} setOpen={setOpen} />
@@ -60,8 +63,8 @@ const DefaultLayout = ({ location }) => {
           <Route component={NoMatch} />
         </Switch>
       </main>
-    </div>
-  )
-}
+    </Root>
+  );
+};
 
 export default DefaultLayout;

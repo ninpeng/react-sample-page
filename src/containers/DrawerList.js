@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
-import makeStyles from '@mui/styles/makeStyles';
 
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -21,68 +21,86 @@ import menu from 'json/menu.json';
 import sampleMenu from 'json/sample-menu.json';
 import pkg from '../../package.json';
 
-const useStyles = makeStyles(theme => ({
-  toolbar: theme.mixins.toolbar,
-  nested: {
+const PREFIX = 'DrawerList';
+
+const classes = {
+  toolbar: `${PREFIX}-toolbar`,
+  nested: `${PREFIX}-nested`,
+};
+
+const Root = styled('div')(({ theme }) => ({
+  [`&.${classes.toolbar}`]: theme.mixins.toolbar,
+
+  [`& .${classes.nested}`]: {
     paddingLeft: theme.spacing(4),
-  }
+  },
 }));
 
-const DrawerListItem = ({ icon, nested=false, title, url, handleClick, expand=false, open, disabled=false }) => {
-  const classes = useStyles();
+const DrawerListItem = ({
+  icon,
+  nested = false,
+  title,
+  url,
+  handleClick,
+  expand = false,
+  open,
+  disabled = false,
+}) => {
   const match = useRouteMatch(url);
 
   return (
     <ListItem
       button
       className={nested ? classes.nested : null}
-      component={(!expand && url) ? RouterLink : 'div'}
+      component={!expand && url ? RouterLink : 'div'}
       to={url}
       selected={!disabled && !expand && match && match.isExact}
       onClick={handleClick}
       disabled={disabled}
     >
-      { icon && <ListItemIcon>{icon}</ListItemIcon> }
+      {icon && <ListItemIcon>{icon}</ListItemIcon>}
       <ListItemText primary={title} />
-      { expand && (open ? <ExpandLess /> : <ExpandMore />) }
+      {expand && (open ? <ExpandLess /> : <ExpandMore />)}
     </ListItem>
-  )
-}
+  );
+};
 
 const DrawerList = () => {
-  const classes = useStyles();
   const [sampleOpen, setSampleOpen] = useState(false);
-  
+
   const handleClick = (e) => {
-    setSampleOpen(state => !state);
-  }
+    setSampleOpen((state) => !state);
+  };
 
   return (
-    <div className={classes.toolbar}>
+    <Root className={classes.toolbar}>
       <ListItem>
-        <ListItemText
-          primary={'React-Sample-Page'}
-          secondary={`v${pkg.version}`}
-        />
+        <ListItemText primary={'React-Sample-Page'} secondary={`v${pkg.version}`} />
       </ListItem>
       <Divider />
       <List>
         <DrawerListItem icon={<HomeIcon />} {...menu['home']} />
         <Divider />
-        <DrawerListItem icon={<DescriptionIcon />} {...menu['sample']}
-          handleClick={handleClick} expand open={sampleOpen} />
+        <DrawerListItem
+          icon={<DescriptionIcon />}
+          {...menu['sample']}
+          handleClick={handleClick}
+          expand
+          open={sampleOpen}
+        />
         <Collapse in={sampleOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            { Object.values(sampleMenu).map(menu =>
-              <DrawerListItem key={menu.title} nested {...menu} /> )}
+            {Object.values(sampleMenu).map((menu) => (
+              <DrawerListItem key={menu.title} nested {...menu} />
+            ))}
           </List>
         </Collapse>
         <DrawerListItem icon={<AirplanemodeActiveIcon />} {...menu['phaser']} />
         <DrawerListItem icon={<HttpsIcon />} {...menu['bitly']} />
         <DrawerListItem icon={<BuildIcon />} {...menu['roadmap']} />
       </List>
-    </div>
-  )
-}
+    </Root>
+  );
+};
 
 export default DrawerList;

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -13,22 +13,34 @@ import { gql, useQuery } from '@apollo/client';
 import MovieDetailCast from './MovieDetailCast';
 import MovieDetailImageGallery from './MovieDetailImageGallery';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
+const PREFIX = 'MovieDetailPage';
+
+const classes = {
+  paper: `${PREFIX}-paper`,
+  imgBox: `${PREFIX}-imgBox`,
+  img: `${PREFIX}-img`,
+  title: `${PREFIX}-title`,
+};
+
+const StyledGrid = styled(Grid)(({ theme }) => ({
+  [`& .${classes.paper}`]: {
     padding: theme.spacing(2),
     margin: 'auto',
     maxWidth: 1000,
   },
-  imgBox: {
+
+  [`& .${classes.imgBox}`]: {
     flexGrow: 0,
   },
-  img: {
+
+  [`& .${classes.img}`]: {
     margin: 'auto',
     display: 'block',
     maxWidth: '100%',
     maxHeight: '100%',
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
@@ -66,7 +78,6 @@ const getMovieDetailQuery = gql`
 `;
 
 const MovieDetailPage = ({ match }) => {
-  const classes = useStyles();
   const [fade, setFade] = useState(false);
   const id = parseInt(match.params.id, 10);
 
@@ -76,7 +87,7 @@ const MovieDetailPage = ({ match }) => {
   return error ? (
     <p>{error.message}</p>
   ) : (
-    <Grid container spacing={2} direction="column">
+    <StyledGrid container spacing={2} direction="column">
       <Grid item xs={12}>
         <Paper className={classes.paper} elevation={8}>
           <Grid container justifyContent="center" spacing={2}>
@@ -141,7 +152,7 @@ const MovieDetailPage = ({ match }) => {
           <MovieDetailImageGallery movie={movie} />
         </Paper>
       </Grid>
-    </Grid>
+    </StyledGrid>
   );
 };
 

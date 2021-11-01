@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { styled } from '@mui/material/styles';
 import { useHistory } from 'react-router-dom';
-import makeStyles from '@mui/styles/makeStyles';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
@@ -13,46 +13,58 @@ import Skeleton from '@mui/material/Skeleton';
 
 import LazyLoad from 'react-lazyload';
 
-const imgWidth = 230;
-const imgHeight = 345;
+const PREFIX = 'MovieCard';
 
-const useStyles = makeStyles((theme) => ({
-  card: {
+const classes = {
+  card: `${PREFIX}-card`,
+  divider: `${PREFIX}-divider`,
+  cardContent: `${PREFIX}-cardContent`,
+  year: `${PREFIX}-year`,
+};
+
+const StyledCard = styled(Card)(({ theme }) => ({
+  [`&.${classes.card}`]: {
     width: imgWidth + theme.spacing(4),
     padding: theme.spacing(2),
   },
-  divider: {
+
+  [`& .${classes.divider}`]: {
     height: theme.spacing(1),
   },
-  cardContent: {
+
+  [`& .${classes.cardContent}`]: {
     // background: '#EFF6FF',
     padding: theme.spacing(1),
   },
-  year: {
+
+  [`& .${classes.year}`]: {
     width: '100%',
   },
 }));
 
+const imgWidth = 230;
+const imgHeight = 345;
+
 const MovieCard = ({ movie }) => {
   const [checked, setChecked] = useState(false);
-  const classes = useStyles();
 
   const history = useHistory();
 
-  const handleClickCard = (e) => {
+  const handleClickCard = () => {
     if (movie) {
       history.push(`/sample/graphql/detail/${movie.id}`);
     }
   };
 
   return (
-    <Card className={classes.card} elevation={8}>
+    <StyledCard className={classes.card} elevation={8}>
       <CardActionArea onClick={handleClickCard}>
         {movie ? (
           <LazyLoad height={imgHeight} once>
             <Fade in={checked}>
               <CardMedia
                 component="img"
+                width={imgWidth}
                 height={imgHeight}
                 image={movie.medium_cover_image}
                 title={movie.title}
@@ -85,7 +97,7 @@ const MovieCard = ({ movie }) => {
           )}
         </CardContent>
       </CardActionArea>
-    </Card>
+    </StyledCard>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -14,18 +14,30 @@ import InfoIcon from '@mui/icons-material/Info';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useSnackbar } from 'notistack';
 
-const useStyles = makeStyles(theme => ({
-  paper: {
+const PREFIX = 'BitlyContainer';
+
+const classes = {
+  paper: `${PREFIX}-paper`,
+  textField: `${PREFIX}-textField`,
+  iconBox: `${PREFIX}-iconBox`,
+  iconButton: `${PREFIX}-iconButton`,
+};
+
+const StyledBox = styled(Box)(({ theme }) => ({
+  [`& .${classes.paper}`]: {
     padding: theme.spacing(2),
-    maxWidth: 800
+    maxWidth: 800,
   },
-  textField: {
+
+  [`& .${classes.textField}`]: {
     paddingBottom: theme.spacing(2),
   },
-  iconBox: {
+
+  [`& .${classes.iconBox}`]: {
     minWidth: 136,
   },
-  iconButton: {
+
+  [`& .${classes.iconButton}`]: {
     padding: theme.spacing(1),
   },
 }));
@@ -35,10 +47,9 @@ const convertUrl = (url) => {
   const urls = url.split('bit.ly/');
 
   return urls.length === 2 ? `https://bitly.com/${urls[1]}` : '';
-}
+};
 
 const BitlyContainer = () => {
-  const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
 
   const [url, setUrl] = useState('');
@@ -49,26 +60,28 @@ const BitlyContainer = () => {
 
   const handleChangeUrl = (e) => {
     const value = e.target.value;
-    
+
     setUrl(value);
     setError(value ? value.split('bit.ly/').length !== 2 : false);
-    setHelpText(value ? value.split('bit.ly/').length === 2 ? '' : '올바른 주소를 입력해 주세요.' : '');
-  }
+    setHelpText(
+      value ? (value.split('bit.ly/').length === 2 ? '' : '올바른 주소를 입력해 주세요.') : ''
+    );
+  };
 
   const handleCopyClick = () => {
     enqueueSnackbar('클립보드에 URL이 복사 되었습니다.', { variant: 'success' });
-  }
+  };
 
   const handleClickShortCut = (e) => {
     window.open(convertedUrl);
-  }
+  };
 
   const handleClickInfo = (e) => {
     window.open(`${convertedUrl}+`);
-  }
+  };
 
   return (
-    <Box align="center">
+    <StyledBox align="center">
       <Paper className={classes.paper} elevation={8}>
         <Grid container alignItems="center" spacing={2}>
           <Grid item xs={12}>
@@ -91,16 +104,10 @@ const BitlyContainer = () => {
           </Grid>
 
           <Grid item sm={2}>
-            <Typography variant="body1">
-              변환된 URL
-            </Typography>
+            <Typography variant="body1">변환된 URL</Typography>
           </Grid>
           <Grid item xs={12} sm>
-            <OutlinedInput
-              value={convertedUrl || 'https://bitly.com/'}
-              fullWidth
-              disabled
-            />
+            <OutlinedInput value={convertedUrl || 'https://bitly.com/'} fullWidth disabled />
           </Grid>
           <Grid className={classes.iconBox} container item justifyContent="flex-end" sm={3}>
             <CopyToClipboard text={convertedUrl} onCopy={handleCopyClick}>
@@ -109,28 +116,31 @@ const BitlyContainer = () => {
                 className={classes.iconButton}
                 aria-label="copy"
                 disabled={!convertedUrl}
-                size="large">
+                size="large"
+              >
                 <FileCopyIcon />
               </IconButton>
             </CopyToClipboard>
-            
+
             <IconButton
               color="primary"
               className={classes.iconButton}
               aria-label="short-cut"
               onClick={handleClickShortCut}
               disabled={!convertedUrl}
-              size="large">
+              size="large"
+            >
               <OpenInNewIcon />
             </IconButton>
-            
+
             <IconButton
               color="primary"
               className={classes.iconButton}
               aria-label="info"
               onClick={handleClickInfo}
               disabled={!convertedUrl}
-              size="large">
+              size="large"
+            >
               <InfoIcon />
             </IconButton>
           </Grid>
@@ -142,8 +152,8 @@ const BitlyContainer = () => {
           </Grid>
         </Grid>
       </Paper>
-    </Box>
+    </StyledBox>
   );
-}
+};
 
 export default BitlyContainer;

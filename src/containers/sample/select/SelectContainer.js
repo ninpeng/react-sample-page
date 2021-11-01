@@ -1,9 +1,21 @@
 import { useState } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { colourOptions, groupedOptions } from './data/data';
+
+const PREFIX = 'SelectContainer';
+
+const classes = {
+  select: `${PREFIX}-select`,
+};
+
+const StyledGrid = styled(Grid)(({ theme }) => ({
+  [`& .${classes.select}`]: {
+    width: 500,
+  },
+}));
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -29,13 +41,7 @@ const groupBadgeStyles = {
   textAlign: 'center',
 };
 
-const useStyles = makeStyles(theme => ({
-  select: {
-    width: 500,
-  },
-}));
-
-const formatGroupLabel = data => (
+const formatGroupLabel = (data) => (
   <div style={groupStyles}>
     <span>{data.label}</span>
     <span style={groupBadgeStyles}>{data.options.length}</span>
@@ -45,31 +51,26 @@ const formatGroupLabel = data => (
 const animatedComponents = makeAnimated();
 
 const SelectContainer = () => {
-  const classes = useStyles();
   const [selectedOption1, setSelectedOption1] = useState(null);
   const [selectedOption2, setSelectedOption2] = useState(null);
   const [selectedOption3, setSelectedOption3] = useState(null);
-  
-  const handleChange1 = selectedOption => {
+
+  const handleChange1 = (selectedOption) => {
     setSelectedOption1(selectedOption);
   };
 
-  const handleChange2 = selectedOption => {
+  const handleChange2 = (selectedOption) => {
     setSelectedOption2(selectedOption);
   };
 
-  const handleChange3 = selectedOption => {
+  const handleChange3 = (selectedOption) => {
     setSelectedOption3(selectedOption);
   };
 
   return (
-    <Grid container direction="column" alignContent="center" spacing={3}>
+    <StyledGrid container direction="column" alignContent="center" spacing={3}>
       <Grid item className={classes.select} xs={12}>
-        <Select
-          options={options}
-          value={selectedOption1}
-          onChange={handleChange1}
-        />
+        <Select options={options} value={selectedOption1} onChange={handleChange1} />
       </Grid>
       <Grid item className={classes.select} xs={12}>
         <Select
@@ -88,8 +89,8 @@ const SelectContainer = () => {
           onChange={handleChange3}
         />
       </Grid>
-    </Grid>
-  )
-}
+    </StyledGrid>
+  );
+};
 
 export default SelectContainer;
