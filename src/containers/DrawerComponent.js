@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Hidden from '@material-ui/core/Hidden';
-import Drawer from '@material-ui/core/Drawer';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import { useTheme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Hidden from '@mui/material/Hidden';
+import Drawer from '@mui/material/Drawer';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 import DrawerList from './DrawerList';
 
@@ -58,7 +59,7 @@ const DrawerComponent = ({ container, open, setOpen }) => {
         <DrawerList />
       </SwipeableDrawer>
     </Hidden>
-    <Hidden mdDown implementation="css">
+    <Hidden lgDown implementation="css">
       <Drawer
         variant="permanent"
         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -71,7 +72,7 @@ const DrawerComponent = ({ container, open, setOpen }) => {
       </Drawer>
     </Hidden>
     </nav>
-  )
+  );
 }
 
 export default DrawerComponent;

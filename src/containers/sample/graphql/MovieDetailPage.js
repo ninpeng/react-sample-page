@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Fade from '@material-ui/core/Fade';
-// import Rating from '@material-ui/lab/Rating';
-import Skeleton from '@material-ui/lab/Skeleton';
+import makeStyles from '@mui/styles/makeStyles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Fade from '@mui/material/Fade';
+// import Rating from '@mui/lab/Rating';
+import Skeleton from '@mui/material/Skeleton';
 
 import { gql, useQuery } from '@apollo/client';
 
@@ -79,7 +79,7 @@ const MovieDetailPage = ({ match }) => {
     <Grid container spacing={2} direction="column">
       <Grid item xs={12}>
         <Paper className={classes.paper} elevation={8}>
-          <Grid container justify="center" spacing={2}>
+          <Grid container justifyContent="center" spacing={2}>
             <Grid item>
               <Box border={1} width={232} height={347} bgcolor="rgb(248, 248, 248)">
                 {movie ? (
@@ -92,7 +92,7 @@ const MovieDetailPage = ({ match }) => {
                     />
                   </Fade>
                 ) : (
-                  <Skeleton variant="rect" width={230} height={345} />
+                  <Skeleton variant="rectangular" width={230} height={345} />
                 )}
               </Box>
             </Grid>

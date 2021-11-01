@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import DefaultSampleContent from '../DefaultSampleContent';
 import Ticker from './Ticker';
 import options from './options.json';
@@ -59,7 +59,7 @@ const WebSocketContainer = () => {
 
   return (
     <DefaultSampleContent title="WebSocket API">
-      <Grid container spacing={3} justify="center">
+      <Grid container spacing={3} justifyContent="center">
         <Grid item xs={12} sm={10} md={8} lg={6}>
           <Select
             isMulti
@@ -75,7 +75,7 @@ const WebSocketContainer = () => {
         </Grid>
       </Grid>
     </DefaultSampleContent>
-  )
+  );
 }
 
 export default WebSocketContainer;

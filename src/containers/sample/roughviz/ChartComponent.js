@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Slider from '@material-ui/core/Slider';
+import makeStyles from '@mui/styles/makeStyles';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Slider from '@mui/material/Slider';
 
 import { Bar, BarH, Donut, Pie } from 'react-roughviz';
 
@@ -56,7 +56,7 @@ const ChartComponent = ({ type, data }) => {
   }
   
   return (
-    <Grid className={classes.root} item container justify="center">
+    <Grid className={classes.root} item container justifyContent="center">
       <Grid item xs={12}>
         <Component
           data={data}
@@ -116,7 +116,7 @@ const ChartComponent = ({ type, data }) => {
         </Grid>
       </Grid>
     </Grid>
-  )
+  );
 }
 
 export default ChartComponent;

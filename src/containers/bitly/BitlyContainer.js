@@ -1,15 +1,15 @@
 import { useState, useMemo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import OpenInNewIcon from '@material-ui/icons/OpenInNew';
-import InfoIcon from '@material-ui/icons/Info';
+import makeStyles from '@mui/styles/makeStyles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import FileCopyIcon from '@mui/icons-material/FileCopy';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import InfoIcon from '@mui/icons-material/Info';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useSnackbar } from 'notistack';
@@ -102,18 +102,35 @@ const BitlyContainer = () => {
               disabled
             />
           </Grid>
-          <Grid className={classes.iconBox} container item justify="flex-end" sm={3}>
+          <Grid className={classes.iconBox} container item justifyContent="flex-end" sm={3}>
             <CopyToClipboard text={convertedUrl} onCopy={handleCopyClick}>
-              <IconButton color="primary" className={classes.iconButton} aria-label="copy" disabled={!convertedUrl}>
+              <IconButton
+                color="primary"
+                className={classes.iconButton}
+                aria-label="copy"
+                disabled={!convertedUrl}
+                size="large">
                 <FileCopyIcon />
               </IconButton>
             </CopyToClipboard>
             
-            <IconButton color="primary" className={classes.iconButton} aria-label="short-cut" onClick={handleClickShortCut} disabled={!convertedUrl}>
+            <IconButton
+              color="primary"
+              className={classes.iconButton}
+              aria-label="short-cut"
+              onClick={handleClickShortCut}
+              disabled={!convertedUrl}
+              size="large">
               <OpenInNewIcon />
             </IconButton>
             
-            <IconButton color="primary" className={classes.iconButton} aria-label="info" onClick={handleClickInfo} disabled={!convertedUrl}>
+            <IconButton
+              color="primary"
+              className={classes.iconButton}
+              aria-label="info"
+              onClick={handleClickInfo}
+              disabled={!convertedUrl}
+              size="large">
               <InfoIcon />
             </IconButton>
           </Grid>
@@ -126,7 +143,7 @@ const BitlyContainer = () => {
         </Grid>
       </Paper>
     </Box>
-  )
+  );
 }
 
 export default BitlyContainer;

@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Pagination from 'material-ui-flat-pagination';
+import { Box, Grid, Pagination } from '@mui/material';
 import { gql, useQuery } from '@apollo/client';
 
 import DefaultSampleContent from '../DefaultSampleContent';
@@ -31,7 +29,6 @@ const getMovieListQuery = gql`
 
 const MovieListPage = () => {
   const [limit /*, setLimit*/] = useState(12); // item count per page
-  const [offset, setOffset] = useState(0);
   const [page, setPage] = useState(1);
   const [rating /*, setRating*/] = useState(0);
 
@@ -43,9 +40,8 @@ const MovieListPage = () => {
     refetch();
   }, [refetch, page, limit]);
 
-  const handleChangePage = (event, offset) => {
-    setOffset(offset);
-    setPage(Math.ceil(offset / limit) + 1);
+  const handleChangePage = (_event, page) => {
+    setPage(page);
   };
 
   return (
@@ -55,7 +51,15 @@ const MovieListPage = () => {
       ) : (
         <Grid container spacing={2}>
           {(loading ? Array.from(Array(limit)) : data.movies.movies).map((movie, index) => (
-            <Grid key={movie ? movie.id : index} container item justify="center" xs={12} sm lg={3}>
+            <Grid
+              key={movie ? movie.id : index}
+              container
+              item
+              justifyContent="center"
+              xs={12}
+              sm
+              lg={3}
+            >
               <MovieCard movie={movie} />
             </Grid>
           ))}
@@ -63,12 +67,10 @@ const MovieListPage = () => {
       )}
       <Box display="flex" py={3} justifyContent="center">
         <Pagination
-          limit={limit}
-          offset={offset}
-          total={data ? data.movies.movie_count : 1}
-          reduced
+          page={page}
+          count={data ? data.movies.movie_count : 1}
           size="small"
-          onClick={handleChangePage}
+          onChange={handleChangePage}
         />
       </Box>
     </DefaultSampleContent>

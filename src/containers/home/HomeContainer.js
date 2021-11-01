@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import Fade from '@material-ui/core/Fade';
+import makeStyles from '@mui/styles/makeStyles';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import Fade from '@mui/material/Fade';
 
 const useStyles = makeStyles((theme) => ({
   card: {

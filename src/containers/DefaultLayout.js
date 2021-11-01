@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import loadable from '@loadable/component';
 
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import makeStyles from '@mui/styles/makeStyles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import Navbars from './Navbars';
 import DrawerComponent from './DrawerComponent';

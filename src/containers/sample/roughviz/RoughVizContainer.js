@@ -1,4 +1,4 @@
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 
 import ChartComponent from './ChartComponent';
 
@@ -17,7 +17,7 @@ export default function RoughVizContainer() {
   // const classes = useStyles();
 
   return (
-    <Grid container justify="center" spacing={2}>
+    <Grid container justifyContent="center" spacing={2}>
       <ChartComponent
         type="Bar"
         data={chartData}
@@ -38,5 +38,5 @@ export default function RoughVizContainer() {
         data={chartData}
       />
     </Grid>
-  )
+  );
 }

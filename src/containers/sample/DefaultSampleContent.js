@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import makeStyles from '@mui/styles/makeStyles';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -14,7 +14,7 @@ const DefaultSampleContent = ({ title, children }) => {
   const classes = useStyles();
 
   return (
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
       <Grid item xs={12}>
       { title &&
         <Paper className={classes.paper} elevation={8}>
@@ -26,7 +26,7 @@ const DefaultSampleContent = ({ title, children }) => {
       </Grid>
       {children}
     </Grid>
-  )
+  );
 }
 
 export default DefaultSampleContent;

@@ -1,5 +1,5 @@
 import Swiper from 'react-id-swiper';
-import Skeleton from '@material-ui/lab/Skeleton';
+import Skeleton from '@mui/material/Skeleton';
 
 import 'swiper/swiper.min.css';
 import './style.scss';
@@ -42,7 +42,7 @@ const MovieDetailImageGallery = ({ movie }) => {
       />
     </Swiper>
   ) : (
-    <Skeleton variant="rect" width={'100%'} height={300} />
+    <Skeleton variant="rectangular" width={'100%'} height={300} />
   );
 };
 

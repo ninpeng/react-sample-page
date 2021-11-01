@@ -1,17 +1,18 @@
 import { useLocation } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Switch from '@material-ui/core/Switch';
+import { useTheme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import Typography from '@mui/material/Typography';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Switch from '@mui/material/Switch';
 
-import MenuIcon from '@material-ui/icons/Menu';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
-import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import GitHubIcon from '@material-ui/icons/GitHub';
+import MenuIcon from '@mui/icons-material/Menu';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import BrightnessHighIcon from '@mui/icons-material/BrightnessHigh';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 import { useChangeDarkmode } from 'utils/CustomThemeProvider';
 
@@ -50,7 +51,7 @@ const Navbars = ({ setOpen }) => {
   const findSampleMenu = Object.values(sampleMenu).find(menu => location.pathname.startsWith(menu.url));
 
   const handleChangeDarkmode = () => {
-    const darkmode = theme.palette.type === 'dark' ? 'light' : 'dark';
+    const darkmode = theme.palette.mode === 'dark' ? 'light' : 'dark';
     changeTheme({ darkmode });
   }
 
@@ -67,7 +68,7 @@ const Navbars = ({ setOpen }) => {
           color="inherit"
           aria-label="open drawer"
           onClick={() => setOpen(true)}
-        >
+          size="large">
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title} noWrap>
@@ -76,22 +77,25 @@ const Navbars = ({ setOpen }) => {
         
         <Switch
           className={classes.themeSwitch}
-          checked={theme.palette.type === 'dark'}
+          checked={theme.palette.mode === 'dark'}
           onChange={handleChangeDarkmode}
           icon={<BrightnessHighIcon />}
           checkedIcon={<Brightness4Icon />}
         />
 
-        <IconButton color="inherit" onClick={handleClickLogin}>
+        <IconButton color="inherit" onClick={handleClickLogin} size="large">
           <AccountCircleIcon />
         </IconButton>
 
-        <IconButton color="inherit" onClick={() => window.open("https://github.com/ninpeng/react-sample-page")}>
+        <IconButton
+          color="inherit"
+          onClick={() => window.open("https://github.com/ninpeng/react-sample-page")}
+          size="large">
           <GitHubIcon />
         </IconButton>
       </Toolbar>
     </AppBar>
-  )
+  );
 }
 
 export default Navbars;
