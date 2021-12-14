@@ -87,7 +87,7 @@ const MovieDetailPage = ({ match }) => {
   return error ? (
     <p>{error.message}</p>
   ) : (
-    <StyledGrid container spacing={2} direction="column">
+    <StyledGrid container spacing={2}>
       <Grid item xs={12}>
         <Paper className={classes.paper} elevation={8}>
           <Grid container justifyContent="center" spacing={2}>

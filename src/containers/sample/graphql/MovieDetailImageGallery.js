@@ -1,45 +1,55 @@
-import Swiper from 'react-id-swiper';
+// import Swiper core and required modules
+import { Navigation, Pagination, A11y } from 'swiper';
+// Direct React component imports
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import Skeleton from '@mui/material/Skeleton';
 
-import 'swiper/swiper.min.css';
-import './style.scss';
+// Styles must use direct files imports
+import 'swiper/swiper.scss'; // core Swiper
+import 'swiper/modules/navigation/navigation.scss'; // Navigation module
+import 'swiper/modules/pagination/pagination.scss'; // Pagination module
 
 const MovieDetailImageGallery = ({ movie }) => {
-  const params = {
-    // setWrapperSize: true,
-    // autoHeight: true,
-    loop: true,
-    // rebuildOnUpdate: true,
-    // shouldSwiperUpdate: true
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    spaceBetween: 30,
-  };
+  const images = movie
+    ? [
+        {
+          name: 'screenshot1',
+          mediumImage: movie.medium_screenshot_image1,
+          largeImage: movie.large_screenshot_image1,
+        },
+        {
+          name: 'screenshot2',
+          mediumImage: movie.medium_screenshot_image2,
+          largeImage: movie.large_screenshot_image2,
+        },
+        {
+          name: 'screenshot3',
+          mediumImage: movie.medium_screenshot_image3,
+          largeImage: movie.large_screenshot_image3,
+        },
+      ]
+    : [];
 
   return movie ? (
-    <Swiper styles={{ background: '#FFF' }} {...params}>
-      {/* <iframe title="trailer" width="560" height="315" src={`https://www.youtube.com/embed/${movie.yt_trailer_code}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen /> */}
-      <img
-        src={movie.large_screenshot_image1}
-        alt="screenshot1"
-        srcSet={`${movie.medium_screenshot_image1} 430w, ${movie.large_screenshot_image1} 1000w`}
-      />
-      <img
-        src={movie.large_screenshot_image2}
-        alt="screenshot2"
-        srcSet={`${movie.medium_screenshot_image2} 430w, ${movie.large_screenshot_image2} 1000w`}
-      />
-      <img
-        src={movie.large_screenshot_image3}
-        alt="screenshot3"
-        srcSet={`${movie.medium_screenshot_image3} 430w, ${movie.large_screenshot_image3} 1000w`}
-      />
+    <Swiper
+      modules={[Navigation, Pagination, A11y]}
+      slidesPerView="auto"
+      centeredSlides
+      loop
+      pagination={{ clickable: true }}
+      navigation
+    >
+      {images.map((image) => (
+        <SwiperSlide key={image.name} style={{ maxWidth: 607, maxHeight: 360 }}>
+          <img
+            src={image.largeImage}
+            alt={image.name}
+            srcSet={`${image.mediumImage} 430w, ${image.largeImage} 1000w`}
+            width="100%"
+            height="100%"
+          />
+        </SwiperSlide>
+      ))}
     </Swiper>
   ) : (
     <Skeleton variant="rectangular" width={'100%'} height={300} />
