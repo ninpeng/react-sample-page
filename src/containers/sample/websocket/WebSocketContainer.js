@@ -9,7 +9,7 @@ const WebSocketContainer = () => {
   const [selectedOptions, setSelectedOptions] = useState(null);
   const [tickerData, setTickerData] = useState({});
 
-  const handleCodeChange = selectedOption => {
+  const handleCodeChange = (selectedOption) => {
     setSelectedOptions(selectedOption);
   };
 
@@ -21,61 +21,57 @@ const WebSocketContainer = () => {
     socket.onopen = () => {
       const msg = [
         {
-          ticket: "UNIQUE_NINPENG_TICKER_TICKET"
+          ticket: 'UNIQUE_NINPENG_TICKER_TICKET',
         },
         {
-          type: "ticker",
-          codes: selectedOptions.map(option => option.value)
-        }
+          type: 'ticker',
+          codes: selectedOptions.map((option) => option.value),
+        },
       ];
-  
+
       socket.send(JSON.stringify(msg));
 
-      console.log('socket open : ', selectedOptions.map(option => option.value));
-    }
-  
+      console.log(
+        'socket open : ',
+        selectedOptions.map((option) => option.value)
+      );
+    };
+
     socket.onmessage = async (e) => {
       // 이 코드가 더 간결하지만 크롬에서만 작동함
       // const msg = JSON.parse(await e.data.text());
       // setTickerData(ticker => ({ ...ticker, [msg.code]: msg }));
-  
+
       const fileReader = new FileReader();
       fileReader.onload = (event) => {
         const msg = JSON.parse(event.target.result);
-        setTickerData(ticker => ({ ...ticker, [msg.code]: msg }));
+        setTickerData((ticker) => ({ ...ticker, [msg.code]: msg }));
       };
-  
+
       fileReader.readAsText(e.data);
-    }
-  
+    };
+
     socket.onclose = () => {
       console.log('socket close');
-    }
+    };
 
-    return (() => {
+    return () => {
       socket.close();
-    })
+    };
   }, [selectedOptions]);
 
   return (
     <DefaultSampleContent title="WebSocket API">
-      <Grid container spacing={3} justifyContent="center">
-        <Grid item xs={12} sm={10} md={8} lg={6}>
-          <Select
-            isMulti
-            options={options.data}
-            value={selectedOptions}
-            onChange={handleCodeChange}
-          />
-        </Grid>
-        <Grid container spacing={2}>
-          { selectedOptions && selectedOptions.map(option =>
-            <Ticker key={option.value} option={option} ticker={tickerData} />)
-          }
-        </Grid>
+      <Select isMulti options={options.data} value={selectedOptions} onChange={handleCodeChange} />
+
+      <Grid container spacing={2} mt="8px">
+        {selectedOptions &&
+          selectedOptions.map((option) => (
+            <Ticker key={option.value} option={option} ticker={tickerData} />
+          ))}
       </Grid>
     </DefaultSampleContent>
   );
-}
+};
 
 export default WebSocketContainer;
