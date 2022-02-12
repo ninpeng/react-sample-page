@@ -80,6 +80,7 @@ const ChartComponent = ({ type, data }) => {
           <FormControl>
             <InputLabel id="label">FillStyle</InputLabel>
             <Select
+              label="FillStyle"
               labelId="fillstyle-select-label"
               id="fillstyle-select"
               value={fillStyle}
