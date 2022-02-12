@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { Link as RouterLink, useRouteMatch } from 'react-router-dom';
+import { Link as RouterLink, useMatch } from 'react-router-dom';
 
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
@@ -46,7 +46,7 @@ const DrawerListItem = ({
   open,
   disabled = false,
 }) => {
-  const match = useRouteMatch(url);
+  const match = useMatch(url ?? '');
 
   return (
     <ListItem
@@ -54,7 +54,7 @@ const DrawerListItem = ({
       className={nested ? classes.nested : null}
       component={!expand && url ? RouterLink : 'div'}
       to={url}
-      selected={!disabled && !expand && match && match.isExact}
+      selected={!disabled && !expand && match && match.pattern.end}
       onClick={handleClick}
       disabled={disabled}
     >

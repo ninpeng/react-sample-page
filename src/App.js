@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Button from '@mui/material/Button';
 import { useSnackbar } from 'notistack';
@@ -41,9 +41,7 @@ function App() {
     <CustomThemeProvider>
       <ApolloProvider client={client}>
         <BrowserRouter>
-          <Switch>
-            <Route path="/" name="Home" component={DefaultLayout} />
-          </Switch>
+          <DefaultLayout />
         </BrowserRouter>
       </ApolloProvider>
     </CustomThemeProvider>

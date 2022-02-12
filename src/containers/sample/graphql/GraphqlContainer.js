@@ -1,15 +1,15 @@
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import MovieListPage from './MovieListPage';
 import MovieDetailPage from './MovieDetailPage';
 
 const GraphqlContainer = () => {
   return (
-    <Switch>
-      <Route exact path="/sample/graphql" component={MovieListPage} />
-      <Route exact path="/sample/graphql/detail/:id" component={MovieDetailPage} />
-    </Switch>
-  )
-}
+    <Routes>
+      <Route path="/" element={<MovieListPage />} />
+      <Route path="detail/:id" element={<MovieDetailPage />} />
+    </Routes>
+  );
+};
 
 export default GraphqlContainer;

@@ -12,6 +12,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import MovieDetailCast from './MovieDetailCast';
 import MovieDetailImageGallery from './MovieDetailImageGallery';
+import { useParams } from 'react-router-dom';
 
 const PREFIX = 'MovieDetailPage';
 
@@ -77,11 +78,11 @@ const getMovieDetailQuery = gql`
   }
 `;
 
-const MovieDetailPage = ({ match }) => {
+const MovieDetailPage = () => {
   const [fade, setFade] = useState(false);
-  const id = parseInt(match.params.id, 10);
+  const { id } = useParams();
 
-  const { error, data } = useQuery(getMovieDetailQuery, { variables: { id } });
+  const { error, data } = useQuery(getMovieDetailQuery, { variables: { id: parseInt(id, 10) } });
   const movie = useMemo(() => data && data.movie, [data]);
 
   return error ? (

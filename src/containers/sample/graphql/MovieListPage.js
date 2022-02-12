@@ -53,11 +53,11 @@ const MovieListPage = () => {
           {(loading ? Array.from(Array(limit)) : data.movies.movies).map((movie, index) => (
             <Grid
               key={movie ? movie.id : index}
-              container
               item
               justifyContent="center"
               xs={12}
-              sm
+              sm={6}
+              md={4}
               lg={3}
             >
               <MovieCard movie={movie} />
