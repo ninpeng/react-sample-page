@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import DefaultSampleContent from '../DefaultSampleContent';
 import Ticker from './Ticker';
@@ -62,7 +63,15 @@ const WebSocketContainer = () => {
 
   return (
     <DefaultSampleContent title="WebSocket API">
-      <Select isMulti options={options.data} value={selectedOptions} onChange={handleCodeChange} />
+      <Box minWidth={260}>
+        {/* TODO: MUI select로 교체 */}
+        <Select
+          isMulti
+          options={options.data}
+          value={selectedOptions}
+          onChange={handleCodeChange}
+        />
+      </Box>
 
       <Grid container spacing={2} mt="8px">
         {selectedOptions &&

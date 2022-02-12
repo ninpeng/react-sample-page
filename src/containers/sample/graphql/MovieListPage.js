@@ -51,15 +51,7 @@ const MovieListPage = () => {
       ) : (
         <Grid container spacing={2}>
           {(loading ? Array.from(Array(limit)) : data.movies.movies).map((movie, index) => (
-            <Grid
-              key={movie ? movie.id : index}
-              item
-              justifyContent="center"
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-            >
+            <Grid key={movie ? movie.id : index} item xs={12} sm={6} md={4} lg={3}>
               <MovieCard movie={movie} />
             </Grid>
           ))}
@@ -68,7 +60,7 @@ const MovieListPage = () => {
       <Box display="flex" py={3} justifyContent="center">
         <Pagination
           page={page}
-          count={data ? data.movies.movie_count : 1}
+          count={data?.movies?.movie_count ?? 1}
           size="small"
           onChange={handleChangePage}
         />

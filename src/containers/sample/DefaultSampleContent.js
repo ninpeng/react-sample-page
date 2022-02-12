@@ -20,7 +20,7 @@ const DefaultSampleContent = ({ title, children }) => {
           </StyledPaper>
         )}
       </Grid>
-      <Grid item width="100%" xs={12}>
+      <Grid item xs={12}>
         {children}
       </Grid>
     </Grid>
